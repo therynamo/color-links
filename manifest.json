@@ -13,7 +13,7 @@
     {
       "matches": ["http://www.google.com/*", "https://www.google.com/*"],
       "css": ["public/styles/links.css"],
-      "js": ["src/links.js"]
+      "js": []
     }
   ],
   "permissions": [

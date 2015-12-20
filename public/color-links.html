@@ -6,32 +6,15 @@
  -->
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-    <script src="popup.js"></script>
+    <title>color-links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./styles/popup.css"></link>
+    <link rel="stylesheet" type="text/css" href="./styles/skeleton/css/skeleton.css"></link>
+    <link rel="stylesheet" type="text/css" href="./styles/skeleton/css/normalize.css"></link>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+    <div id="ReactEntry"></div>
+    <script src="popup.js"></script>
   </body>
 </html>
-

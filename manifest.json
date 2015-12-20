@@ -6,7 +6,7 @@
   "version": "0.1.0",
 
   "browser_action": {
-    "default_icon": "public/images/color-links.png",
+    "default_icon": "public/images/links.png",
     "default_popup": "public/color-links.html"
   },
   "content_scripts": [

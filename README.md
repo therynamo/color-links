@@ -17,3 +17,4 @@ Todo
 ===
 
 - Add Color Picker
+- Remove boilerplate code

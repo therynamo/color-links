@@ -1,4 +1,4 @@
-Color Links
+Color Links ![ ](./public/images/links.png)
 ===
 
 ### Initial Problem

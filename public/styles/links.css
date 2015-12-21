@@ -1,3 +1,15 @@
 a:visited {
   color: orange !important;
 }
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.orange {
+  color: orange;
+}

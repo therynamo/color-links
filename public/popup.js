@@ -19653,7 +19653,7 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -19683,15 +19683,33 @@
 	  }
 
 	  _createClass(Popup, [{
-	    key: "render",
+	    key: 'onClickHandler',
+	    value: function onClickHandler() {
+	      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+	        console.log('Sent Color Request');
+	        chrome.tabs.sendMessage(tabs[0].id, { color: "blue" }, function (response) {
+	          console.log('Response Color', response.message);
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { id: "container" },
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "This is my plugin :)"
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'twelve columns' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.onClickHandler },
+	              'Click'
+	            )
+	          )
 	        )
 	      );
 	    }

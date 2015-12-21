@@ -3,8 +3,8 @@ Color Links ![ ](./public/images/links.png)
 
 ### Initial Problem
 
-Browsing google as a color-blind individual, it becomes frustrating after a while,
-not knowing if you've already visited that link or not.
+Browsing google as a color-blind individual, it becomes frustrating after a while not
+knowing if you've already visited that link or not.
 
 ### Solution
 
@@ -17,4 +17,3 @@ Todo
 ===
 
 - Add Color Picker
-- Remove boilerplate code

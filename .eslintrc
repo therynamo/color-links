@@ -1,0 +1,8 @@
+---
+extends: 'airbnb'
+globals:
+  chrome: true
+rules:
+  strict: 0
+  comma-dangle: 0
+  space-before-function-paren: 0

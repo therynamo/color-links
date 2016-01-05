@@ -1,5 +1,10 @@
 ---
 extends: 'airbnb'
+env:
+  mocha: true
+  node: true
+  browser: true
+  es6: true
 globals:
   chrome: true
 rules:

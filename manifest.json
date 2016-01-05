@@ -11,7 +11,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.google.com/*", "https://www.google.com/*"],
+      "matches": ["http://www.google.com/*", "https://www.google.com/*", "https://www.google.com.bz/*"],
       "css": ["public/styles/links.css"],
       "js": ["src/content-scripts/index.js"]
     }

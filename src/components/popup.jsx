@@ -4,8 +4,8 @@ export default class Popup extends React.Component {
   onClickHandler() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       console.log('Sent Color Request');
-      chrome.tabs.sendMessage(tabs[0].id, { color: 'blue' }, function(response) {
-        console.log('Response Color', response.message);
+      chrome.tabs.sendMessage(tabs[0].id, { color: 'green' }, function(response) {
+        console.log('Response Color Set');
       });
     });
   }

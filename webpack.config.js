@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
-  output: { path: path.join(__dirname, 'public'), filename: 'popup.js' },
+  output: { path: path.join(__dirname, 'public/dist'), filename: 'popup.js' },
   module: {
     loaders: [
       {

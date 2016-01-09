@@ -5,8 +5,13 @@ var initializeStylesheet = function initializeStylesheet() {
     styleElement.setAttribute('id', 'colorLinks');
 
     document.head.appendChild(styleElement);
-
-    styleElement.sheet.insertRule('a:visited {color: orange}', 0);
+    chrome.storage.sync.get('color', function(results) {
+      if(results.color) {
+        styleElement.sheet.insertRule('a:visited {color: ' + results.color + '}', 0);
+        return;
+      }
+      styleElement.sheet.insertRule('a:visited {color: orange}', 0);
+    });
 };
 
 var getStyleSheet = function getStyleSheet() {
@@ -22,6 +27,9 @@ var setStyleSheet = function setStyleSheet(color) {
   if(styleSheet) {
     styleSheet.deleteRule(0);
     styleSheet.insertRule('a:visited { color:' + color + '}', 0);
+    chrome.storage.sync.set({color: color}, function() {
+      console.log('set color to ', color)
+    })
   }
 };
 

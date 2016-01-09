@@ -26,19 +26,10 @@ var setStyleSheet = function setStyleSheet(color) {
 };
 
 var colorListener = function colorListener(request, sender, sendResponse) {
-  switch (request.color) {
-    case 'red':
-      setStyleSheet('red')
-      break;
-    case 'blue':
-      setStyleSheet('blue')
-      break;
-    case 'orange':
-      setStyleSheet('orange')
-      break;
-    default:
-      setStyleSheet('orange')
-      break;
+  var color = request.color;
+
+  if(color) {
+    setStyleSheet(color);
   }
 };
 

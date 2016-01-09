@@ -8,7 +8,7 @@ knowing if you've already visited that link or not.
 
 ### Solution
 
-Color Links intends to make it a bit easier to search google for the color-blind.
+Color Links intends to make it a bit easier to search google, for the color-blind.
 This chrome extension allows you to browse google with full awareness of which links
 you've clicked.
 
@@ -16,4 +16,5 @@ you've clicked.
 Todo
 ===
 
-- Add Color Picker
+- Style popup with better buttons
+- Create hex input or slider

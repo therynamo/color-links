@@ -1,3 +1,4 @@
+![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master)
 Color Links ![ ](./public/images/links.png)
 ===
 

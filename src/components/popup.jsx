@@ -12,22 +12,20 @@ export default class Popup extends React.Component {
 
   render() {
     return (
-      <div className="container">
-          <div className="row">
-            <div className="twelve columns">
-              {
-                colors.map((color) => {
-                  return (
-                    <ColorButton
-                      color={color}
-                      clickHandler={this.onClickHandler.bind(this, color)}
-                      key={color}
-                    />
-                  );
-                })
-              }
-            </div>
-          </div>
+      <div className="colorLinks">
+        <div className="colorLinks--grid">
+          {
+            colors.map((color) => {
+              return (
+                <ColorButton
+                  color={color}
+                  clickHandler={this.onClickHandler.bind(this, color)}
+                  key={color}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

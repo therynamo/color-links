@@ -9,7 +9,7 @@ export default class ColorButton extends React.Component {
 
     return (
       <div>
-        <button onClick={this.props.clickHandler} style={buttonStyle}>
+        <button onClick={this.props.clickHandler} style={buttonStyle} ref="button">
         </button>
       </div>
     );

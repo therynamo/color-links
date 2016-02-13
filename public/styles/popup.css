@@ -1,5 +1,52 @@
+body {
+  font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1;
+  padding: .5em;
+  margin: 0.5em;
+}
+
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 button {
-  border-radius: 50px;
-  height: 50px;
-  width: 50px;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+button:focus {
+  /*border-radius: 33%;*/
+  outline: none;
+  box-shadow: 0 0 0 2px #000;
+  border: 2px solid #fff;
+  opacity: 1;
+}
+
+.colorLinks {
+  width: 5em;
+  margin: -0.5em;
+  padding: 1em;
+  border-radius: 15%;
+  transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+.colorLinks--grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.colorLinks--grid > * {
+  flex: 1 1 50%;
+  text-align: center;
+}
+
+.colorLinks--grid > div:nth-child(3) {
+  flex: 1 1 100%;
 }

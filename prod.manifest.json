@@ -6,14 +6,14 @@
   "version": "0.1.0",
 
   "browser_action": {
-    "default_icon": "public/images/links.png",
-    "default_popup": "public/color-links.html"
+    "default_icon": "./images/links.png",
+    "default_popup": "./color-links.html"
   },
   "content_scripts": [
     {
       "matches": ["http://www.google.com/*", "https://www.google.com/*", "https://www.google.com.bz/*", "https://www.google.co.in/*"],
-      "css": ["public/styles/links.css"],
-      "js": ["public/dist/contentscript.js"]
+      "css": ["./styles/links.css"],
+      "js": ["./src/contentscript.js"]
     }
   ],
   "permissions": [

@@ -1,5 +1,5 @@
-webpack.config.js
+webpack.*
 public/**/*.js
+dist/**/*.js
 node_modules/
 .idea/
-src/content-scripts/**/*.js

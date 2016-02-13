@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp clean && gulp watch",
+    "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
@@ -29,18 +31,25 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "chai": "^3.4.1",
+    "del": "^2.2.0",
     "eslint": "^1.10.3",
     "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.1",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
     "mocha": "^2.3.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-stream": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
-    "eslint-plugin-react": "^3.13.1"
+    "eslint-plugin-react": "^3.13.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0"
   }
 }

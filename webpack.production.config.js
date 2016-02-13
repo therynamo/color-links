@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
-  output: { path: path.join(__dirname, 'public/'), filename: 'popup.js' },
+  output: { path: path.join(__dirname, 'dist'), filename: 'popup.js' },
   module: {
     loaders: [
       {
@@ -16,4 +16,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin()
+  ]
 };

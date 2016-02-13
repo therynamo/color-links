@@ -2,6 +2,7 @@
 const gulp = require('gulp');
 const del = require('del');
 const rename = require('gulp-rename');
+const zip = require('gulp-zip');
 const eslint = require('gulp-eslint');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
@@ -31,7 +32,8 @@ gulp.task('lint', () => {
 gulp.task('clean', () => {
   return del([
     `${path.dist}**`,
-    `${path.public}dist/**`
+    `${path.public}dist/**`,
+    `./colorlinks.zip`
   ]);
 });
 
@@ -88,6 +90,12 @@ gulp.task('build:prod', ['lint', 'copy:manifest', 'copy:images', 'copy:styles', 
       presets: ['es2015']
     }))
     .pipe(gulp.dest(path.dist + 'src'));
+});
+
+gulp.task('zip', () => {
+  return gulp.src(`${path.dist}/**/*`)
+    .pipe(zip('colorlinks.zip'))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', () => {

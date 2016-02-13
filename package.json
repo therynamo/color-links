@@ -7,7 +7,7 @@
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp clean && gulp watch",
-    "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js"
+    "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js && gulp zip"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-zip": "^3.1.0",
     "mocha": "^2.3.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

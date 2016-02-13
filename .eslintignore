@@ -1,4 +1,4 @@
-webpack.config.js
+webpack.*
 public/**/*.js
 node_modules/
 .idea/

@@ -1,5 +1,6 @@
 .idea/
 node_modules/
 dist/
+colorlinks.zip
 public/*.js
 public/*.map

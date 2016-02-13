@@ -2,4 +2,3 @@ webpack.*
 public/**/*.js
 node_modules/
 .idea/
-src/content-scripts/**/*.js

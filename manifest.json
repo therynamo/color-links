@@ -3,10 +3,14 @@
 
   "name": "Color Links",
   "description": "This extension allows you to change the color of your visited links",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "icons": {
+    "16": "public/images/links16.png",
+    "48": "public/images/links48.png",
+    "128": "public/images/links128.png"
+  },
 
   "browser_action": {
-    "default_icon": "public/images/links.png",
     "default_popup": "public/color-links.html"
   },
   "content_scripts": [

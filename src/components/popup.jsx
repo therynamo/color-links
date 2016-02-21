@@ -43,7 +43,7 @@ export default class Popup extends React.Component {
 
   render() {
     return (
-      <div className="colorLinks" style={{ 'border': `solid ${this.state.activeColor} 2px` }}>
+      <div className="colorLinks" style={{ 'border': `solid ${this.state.activeColor} 4px` }}>
         <div className="colorLinks--grid">
           {
             colors.map((color) => {

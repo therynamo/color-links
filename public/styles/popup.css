@@ -1,8 +1,6 @@
 body {
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
-  line-height: 1;
-  padding: .5em;
-  margin: 0.5em;
+  margin: 0
 }
 
 
@@ -31,10 +29,8 @@ button:focus {
 
 .colorLinks {
   width: 5em;
-  margin: -0.5em;
   padding: 1em;
-  border-radius: 15%;
-  transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
+  transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
 }
 
 .colorLinks--grid {

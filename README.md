@@ -1,3 +1,5 @@
+[We're On The Chrome Store!](https://chrome.google.com/webstore/detail/color-links/hiponeioelghhaljfflaaflpccedbdem)
+
 ![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master)
 Color Links ![ ](./public/images/links128.png)
 ===

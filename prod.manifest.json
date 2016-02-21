@@ -3,7 +3,7 @@
 
   "name": "Color Links",
   "description": "This extension allows you to change the color of your visited links",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "icons": {
       "16": "./images/links16.png",
       "48": "./images/links48.png",
@@ -14,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.google.com/*", "https://www.google.com/*", "https://www.google.com.bz/*", "https://www.google.co.in/*"],
+      "matches": ["http://www.google.*/*", "https://www.google.*/*"],
       "css": ["./styles/links.css"],
       "js": ["./src/contentscript.js"]
     }

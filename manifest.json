@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.google.com/*", "https://www.google.com/*", "https://www.google.com.bz/*", "https://www.google.co.in/*"],
+      "matches": ["http://www.google.*/*", "https://www.google.*/*"],
       "css": ["public/styles/links.css"],
       "js": ["src/content-scripts/contentscript.js"]
     }

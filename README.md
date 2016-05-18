@@ -1,6 +1,6 @@
 [We're On The Chrome Store!](https://chrome.google.com/webstore/detail/color-links/hiponeioelghhaljfflaaflpccedbdem)
 
-![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master)
+![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master) [![Code Climate](https://codeclimate.com/github/therynamo/color-links/badges/gpa.svg)](https://codeclimate.com/github/therynamo/color-links)
 Color Links ![ ](./public/images/links128.png)
 ===
 

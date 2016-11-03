@@ -25,7 +25,9 @@
        "*://www.google.it/*",
        "*://www.google.com.au/*",
        "*://www.google.es/*",
-       "*://www.google.pl/*"
+       "*://www.google.pl/*",
+       "*://www.google.cz/*",
+       "*://www.google.nl/*"
        ],
       "css": ["./styles/links.css"],
       "js": ["./src/contentscript.js"]

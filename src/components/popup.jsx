@@ -35,7 +35,7 @@ export default class Popup extends React.Component {
         if (results.color) {
           resolve(results.color);
         } else {
-          reject(new Error('Did Not Recieve Color'));
+          reject(new Error('Did Not Receive Color'));
         }
       });
     });

@@ -1,5 +1,13 @@
 'use strict';
 
+const displayStyles = function displayStyles(location) {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get('blacklist', (result) => {
+      resolve(result.filter(el => location === el));
+    });
+  });
+};
+
 const initializeStylesheet = function initializeStylesheet() {
   const styleElement = document.createElement('style');
   styleElement.setAttribute('id', 'colorLinks');
@@ -39,5 +47,11 @@ const colorListener = function colorListener(request, sender, sendResponse) { //
   }
 };
 
-initializeStylesheet();
-chrome.runtime.onMessage.addListener(colorListener);
+displayStyles(window.location)
+  .then(urls => {
+    if (urls.length) return;
+
+    initializeStylesheet();
+    chrome.runtime.onMessage.addListener(colorListener);
+  })
+  .catch(err => console.log(err));

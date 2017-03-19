@@ -15,19 +15,8 @@
   "content_scripts": [
     {
       "matches": [
-       "*://www.google.com/*",
-       "*://www.google.com.bz/*",
-       "*://www.google.co.in/*",
-       "*://www.google.de/*",
-       "*://www.google.fr/*",
-       "*://www.google.co.uk/*",
-       "*://www.google.br/*",
-       "*://www.google.it/*",
-       "*://www.google.com.au/*",
-       "*://www.google.es/*",
-       "*://www.google.pl/*",
-       "*://www.google.cz/*",
-       "*://www.google.nl/*"
+        "http://*/*",
+        "https://*/*"
        ],
       "css": ["./styles/links.css"],
       "js": ["./src/contentscript.js"]

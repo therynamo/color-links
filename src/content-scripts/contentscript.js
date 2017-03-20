@@ -3,7 +3,15 @@
 const displayStyles = function displayStyles(location) {
   return new Promise((resolve) => {
     chrome.storage.sync.get('blacklist', (result) => {
-      resolve(result.filter(el => location === el));
+      const arr = (result.blacklist && result.blacklist.length) ? result.blacklist : [];
+      const isBlacklisted = arr.filter((el) => {
+        // This is expensive
+        // ✍️ TODO: Make better
+        const urlRegex = new RegExp(el);
+        return urlRegex.test(location);
+      });
+
+      resolve(isBlacklisted.length);
     });
   });
 };
@@ -49,7 +57,7 @@ const colorListener = function colorListener(request, sender, sendResponse) { //
 
 displayStyles(window.location)
   .then(urls => {
-    if (urls.length) return;
+    if (urls) return;
 
     initializeStylesheet();
     chrome.runtime.onMessage.addListener(colorListener);

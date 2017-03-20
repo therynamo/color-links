@@ -5,10 +5,6 @@
  * @return {Object} Blacklist object
  */
 class Blacklist {
-  constructor() {
-    super();
-  }
-
   /**
    * Return the blacklist array from chrome storage
    * (There is no error in callback see documentation
@@ -16,10 +12,11 @@ class Blacklist {
    *
    * @return {Array} return array from chrome storage
    */
-  get blacklist() {
+  getBlacklist() {
     return new Promise((resolve) => {
       chrome.storage.sync.get('blacklist', (result) => {
-        resolve(result);
+        const blacklist = (result.blacklist && result.blacklist.length) ? result.blacklist : [];
+        resolve(blacklist);
       });
     });
   }
@@ -29,8 +26,8 @@ class Blacklist {
    *
    * @param {Array} blacklist array of urls to blacklist
    */
-  set blacklist(blacklist) {
-    return chrome.storage.sync.set(blacklist);
+  setBlacklist(blacklist) {
+    return chrome.storage.sync.set({ blacklist });
   }
 
   /**
@@ -39,8 +36,12 @@ class Blacklist {
    * @param {String} url url to blacklist
    */
   addUrlToBlacklist(url) {
-    this.blacklist()
-      .then(blacklist => this.blacklist(blacklist.push(url)));
+    return this.getBlacklist()
+      .then(blacklist => {
+        const arr = blacklist.concat([url]);
+        this.setBlacklist(arr);
+        return arr;
+      });
   }
 
   /**
@@ -49,8 +50,13 @@ class Blacklist {
    * @param {String} url url to remove from blacklist
    */
   removeUrlFromBlacklist(url) {
-    this.blacklist()
-      .then(blacklist => this.blacklist(blacklist.pop(url)));
+    return this.getBlacklist()
+      .then(blacklist => {
+        const arr = blacklist.slice();
+        arr.pop(url);
+        this.setBlacklist(arr);
+        return arr;
+      });
   }
 }
 

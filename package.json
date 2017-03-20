@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp clean && gulp watch",
+    "build:dev": "gulp build:dev && gulp webpack:dev",
+    "dev": "npm run build:dev && gulp clean && gulp watch",
     "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js && gulp zip"
   },
   "repository": {

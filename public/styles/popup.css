@@ -46,3 +46,14 @@ button:focus {
 .colorLinks--grid > div:nth-child(3) {
   flex: 1 1 100%;
 }
+
+/* Blacklist
+_________________________________________________________*/
+
+.blacklist--input {
+  width: 75px;
+}
+
+.blacklist--submit {
+  margin-left: 24px;
+}

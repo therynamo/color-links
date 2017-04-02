@@ -8,7 +8,7 @@ body {
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-button {
+.colorLinks--button {
   border-radius: 50%;
   height: 2em;
   width: 2em;
@@ -19,7 +19,7 @@ button {
   transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
-button:focus {
+.colorLinks--button:focus {
   /*border-radius: 33%;*/
   outline: none;
   box-shadow: 0 0 0 2px #000;
@@ -50,8 +50,34 @@ button:focus {
 /* Blacklist
 _________________________________________________________*/
 
+.blacklist {
+  padding-top: 10px;
+}
+
+.blacklist .blacklist--content {
+  display: none;
+  opacity: 0;
+  height: 88px;
+  transform: translateY(-88px);
+  transition: transform 400ms ease-in;
+}
+
+.blacklist-isActive .blacklist--content {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.blacklist--list {
+  margin: 0;
+}
+
 .blacklist--input {
   width: 75px;
+}
+
+.blacklist--inputLabel {
+  font-size: 12px;
 }
 
 .blacklist--submit {

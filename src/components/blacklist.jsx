@@ -16,9 +16,11 @@ export default class BlacklistManager extends React.Component {
     super();
     this.state = {
       blacklist: [],
+      isActive: false,
       url: '',
-      valid: false
+      valid: true
     };
+    this.handleIsActive = this.handleIsActive.bind(this);
   }
 
   componentDidMount() {
@@ -57,21 +59,36 @@ export default class BlacklistManager extends React.Component {
     e.preventDefault();
   }
 
+  handleIsActive() {
+    console.log('bang');
+    const { isActive } = this.state;
+    this.setState({
+      isActive: !isActive
+    });
+  }
+
   render() {
+    const { isActive } = this.state;
+    const buttonMsg = isActive ? 'close' : 'advanced options';
+    const containerStyles = isActive ? 'blacklist blacklist-isActive' : 'blacklist';
+
     return (
-      <div>
-        <form className="blacklist--form" onSubmit={this.handleSubmit.bind(this)}>
-          <label className="blacklist--inputLabel">Blacklist URL</label>
-          <input className="blacklist--input" style={this.state.valid ? validInput : invalidInput} type="text" placeholder="http(s)://..." onChange={this.onChange.bind(this)}/>
-          <input className="blacklist--submit" disabled={!this.state.valid} type="submit" value="Add" />
-        </form>
-        <ul>
-          {
-            this.state.blacklist.map((url, i) => {
-              return <li key={i} onClick={this.onClick.bind(this, url)}> {url} </li>;
-            })
-          }
-        </ul>
+      <div className={containerStyles}>
+        <button onClick={this.handleIsActive} className="blacklist--button">{buttonMsg}</button>
+        <div className="blacklist--content">
+          <form className="blacklist--form" onSubmit={this.handleSubmit.bind(this)}>
+            <label className="blacklist--inputLabel">Blacklist URL</label>
+            <input className="blacklist--input" style={this.state.valid ? validInput : invalidInput} type="text" placeholder="http(s)://..." onChange={this.onChange.bind(this)}/>
+            <input className="blacklist--submit" disabled={!this.state.valid} type="submit" value="Add" />
+          </form>
+          <ul className="blacklist--list">
+            {
+              this.state.blacklist.map((url, i) => {
+                return <li key={i} onClick={this.onClick.bind(this, url)}> {url} </li>;
+              })
+            }
+          </ul>
+        </div>
       </div>
     );
   }

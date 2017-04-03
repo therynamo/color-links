@@ -7,6 +7,12 @@ body {
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.colorLinks--grid {
+  position: relative;
+  z-index: 2;
+  background: white;
+  padding-bottom: 10px;
+}
 
 .colorLinks--button {
   border-radius: 50%;
@@ -51,21 +57,24 @@ body {
 _________________________________________________________*/
 
 .blacklist {
-  padding-top: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.blacklist .blacklist--content {
+.blacklist--content {
   display: none;
-  opacity: 0;
-  height: 88px;
-  transform: translateY(-88px);
-  transition: transform 400ms ease-in;
 }
 
 .blacklist-isActive .blacklist--content {
   display: block;
-  transform: translateY(0);
-  opacity: 1;
+  animation: slide 200ms ease-in forwards;
+}
+
+.blacklist--button {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 10;
 }
 
 .blacklist--list {
@@ -82,4 +91,15 @@ _________________________________________________________*/
 
 .blacklist--submit {
   margin-left: 24px;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 58px;
+  }
 }

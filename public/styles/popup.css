@@ -7,8 +7,14 @@ body {
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.colorLinks--grid {
+  position: relative;
+  z-index: 2;
+  background: white;
+  padding-bottom: 10px;
+}
 
-button {
+.colorLinks--button {
   border-radius: 50%;
   height: 2em;
   width: 2em;
@@ -19,7 +25,7 @@ button {
   transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
-button:focus {
+.colorLinks--button:focus {
   /*border-radius: 33%;*/
   outline: none;
   box-shadow: 0 0 0 2px #000;
@@ -45,4 +51,55 @@ button:focus {
 
 .colorLinks--grid > div:nth-child(3) {
   flex: 1 1 100%;
+}
+
+/* Blacklist
+_________________________________________________________*/
+
+.blacklist {
+  position: relative;
+  z-index: 1;
+}
+
+.blacklist--content {
+  display: none;
+}
+
+.blacklist-isActive .blacklist--content {
+  display: block;
+  animation: slide 200ms ease-in forwards;
+}
+
+.blacklist--button {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.blacklist--list {
+  margin: 0;
+}
+
+.blacklist--input {
+  width: 75px;
+}
+
+.blacklist--inputLabel {
+  font-size: 12px;
+}
+
+.blacklist--submit {
+  margin-left: 24px;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 58px;
+  }
 }

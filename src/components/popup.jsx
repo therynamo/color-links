@@ -1,5 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import BlacklistManager from './blacklist.jsx';
 import ColorButton from './colorButton.jsx';
 const colors = ['green', 'blue', 'red', 'orange', 'cyan'];
 
@@ -35,7 +36,7 @@ export default class Popup extends React.Component {
         if (results.color) {
           resolve(results.color);
         } else {
-          reject(new Error('Did Not Recieve Color'));
+          reject(new Error('Did Not Receive Color'));
         }
       });
     });
@@ -43,7 +44,7 @@ export default class Popup extends React.Component {
 
   render() {
     return (
-      <div className="colorLinks" style={{ 'border': `solid ${this.state.activeColor} 4px` }}>
+      <div className="colorLinks">
         <div className="colorLinks--grid">
           {
             colors.map((color) => {
@@ -58,6 +59,7 @@ export default class Popup extends React.Component {
             })
           }
         </div>
+        <BlacklistManager />
       </div>
     );
   }

@@ -4,3 +4,4 @@ dist/
 colorlinks.zip
 public/*.js
 public/*.map
+.DS_Store

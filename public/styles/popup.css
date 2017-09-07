@@ -1,17 +1,26 @@
 body {
+  color: #000000;
+  font-family: helvetica;
+  font-weight: 200;
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
-  margin: 0
+  margin: 0;
 }
 
 
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.colorLinks {
+  padding: 1em;
+  transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
+  width: 200px;
+}
+
 .colorLinks--grid {
-  position: relative;
-  z-index: 2;
   background: white;
   padding-bottom: 10px;
+  padding: 32px;
+  position: relative;
 }
 
 .colorLinks--button {
@@ -33,12 +42,6 @@ body {
   opacity: 1;
 }
 
-.colorLinks {
-  width: 5em;
-  padding: 1em;
-  transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
-}
-
 .colorLinks--grid {
   display: flex;
   flex-wrap: wrap;
@@ -53,43 +56,43 @@ body {
   flex: 1 1 100%;
 }
 
-/* Blacklist
+/* whitelist
 _________________________________________________________*/
 
-.blacklist {
+.whitelist {
   position: relative;
   z-index: 1;
 }
 
-.blacklist--content {
+.whitelist--content {
   display: none;
 }
 
-.blacklist-isActive .blacklist--content {
+.whitelist-isActive .whitelist--content {
   display: block;
   animation: slide 200ms ease-in forwards;
 }
 
-.blacklist--button {
+.whitelist--button {
   display: block;
   width: 100%;
   position: relative;
   z-index: 10;
 }
 
-.blacklist--list {
+.whitelist--list {
   margin: 0;
 }
 
-.blacklist--input {
+.whitelist--input {
   width: 75px;
 }
 
-.blacklist--inputLabel {
+.whitelist--inputLabel {
   font-size: 12px;
 }
 
-.blacklist--submit {
+.whitelist--submit {
   margin-left: 24px;
 }
 

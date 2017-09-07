@@ -1,7 +1,7 @@
 import React from 'react';
-import Blacklist from '../helpers/Blacklist';
+import Whitelist from '../helpers/Whitelist';
 
-const blacklist = new Blacklist();
+const whitelist = new Whitelist();
 // Taken from: http://stackoverflow.com/a/3809435
 const urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/g;
 const validInput = {
@@ -11,11 +11,11 @@ const invalidInput = {
   'border': 'red 2px solid'
 };
 
-export default class BlacklistManager extends React.Component {
+export default class WhitelistManager extends React.Component {
   constructor() {
     super();
     this.state = {
-      blacklist: [],
+      whitelist: [],
       isActive: false,
       url: '',
       valid: true
@@ -24,16 +24,16 @@ export default class BlacklistManager extends React.Component {
   }
 
   componentDidMount() {
-    blacklist.getBlacklist()
+    whitelist.getWhitelist()
       .then((urls) => {
-        this.setState({ blacklist: urls });
+        this.setState({ whitelist: urls });
       })
       .catch(err => console.log(err));
   }
 
   onClick(url) {
-    blacklist.removeUrlFromBlacklist(url)
-      .then(blacklistArr => this.setState({ blacklist: blacklistArr }))
+    whitelist.removeUrlFromWhitelist(url)
+      .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
       .catch(err => console.log(err));
   }
 
@@ -53,14 +53,13 @@ export default class BlacklistManager extends React.Component {
   }
 
   handleSubmit(e) {
-    blacklist.addUrlToBlacklist(this.state.url)
-      .then(blacklistArr => this.setState({ blacklist: blacklistArr }))
+    whitelist.addUrlToWhitelist(this.state.url)
+      .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
       .catch(err => console.log(err));
     e.preventDefault();
   }
 
   handleIsActive() {
-    console.log('bang');
     const { isActive } = this.state;
     this.setState({
       isActive: !isActive
@@ -70,20 +69,20 @@ export default class BlacklistManager extends React.Component {
   render() {
     const { isActive } = this.state;
     const buttonMsg = isActive ? 'close' : 'advanced options';
-    const containerStyles = isActive ? 'blacklist blacklist-isActive' : 'blacklist';
+    const containerStyles = isActive ? 'whitelist whitelist-isActive' : 'whitelist';
 
     return (
       <div className={containerStyles}>
-        <button onClick={this.handleIsActive} className="blacklist--button">{buttonMsg}</button>
-        <div className="blacklist--content">
-          <form className="blacklist--form" onSubmit={this.handleSubmit.bind(this)}>
-            <label className="blacklist--inputLabel">Blacklist URL</label>
-            <input className="blacklist--input" style={this.state.valid ? validInput : invalidInput} type="text" placeholder="http(s)://..." onChange={this.onChange.bind(this)}/>
-            <input className="blacklist--submit" disabled={!this.state.valid} type="submit" value="Add" />
+        <button onClick={this.handleIsActive} className="whitelist--button">{buttonMsg}</button>
+        <div className="whitelist--content">
+          <form className="whitelist--form" onSubmit={this.handleSubmit.bind(this)}>
+            <label className="whitelist--inputLabel">Whitelist URL</label>
+            <input className="whitelist--input" style={this.state.valid ? validInput : invalidInput} type="text" placeholder="http(s)://..." onChange={this.onChange.bind(this)}/>
+            <input className="whitelist--submit" disabled={!this.state.valid} type="submit" value="Add" />
           </form>
-          <ul className="blacklist--list">
+          <ul className="whitelist--list">
             {
-              this.state.blacklist.map((url, i) => {
+              this.state.whitelist.map((url, i) => {
                 return <li key={i} onClick={this.onClick.bind(this, url)}> {url} </li>;
               })
             }

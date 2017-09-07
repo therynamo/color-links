@@ -1,6 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import BlacklistManager from './blacklist.jsx';
+import WhitelistManager from './whitelist.jsx';
 import ColorButton from './colorButton.jsx';
 const colors = ['green', 'blue', 'red', 'orange', 'cyan'];
 
@@ -59,7 +59,7 @@ export default class Popup extends React.Component {
             })
           }
         </div>
-        <BlacklistManager />
+        <WhitelistManager />
       </div>
     );
   }

@@ -57,7 +57,6 @@ export default class WhitelistManager extends React.Component {
 
   render() {
     const { isActive, url } = this.state;
-    const { color } = this.props;
 
     return (
       <div className="whitelist--wrapper">

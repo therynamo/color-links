@@ -1,15 +1,8 @@
 import React from 'react';
 import Whitelist from '../helpers/Whitelist';
+import { getCurrentUrl, reloadCurrentTab } from '../helpers/chrome';
 
 const whitelist = new Whitelist();
-// Taken from: http://stackoverflow.com/a/3809435
-const urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/g;
-const validInput = {
-  'border': 'green 2px solid'
-};
-const invalidInput = {
-  'border': 'red 2px solid'
-};
 
 export default class WhitelistManager extends React.Component {
   constructor() {
@@ -17,49 +10,45 @@ export default class WhitelistManager extends React.Component {
     this.state = {
       whitelist: [],
       isActive: false,
-      url: '',
-      valid: true
+      url: null,
     };
-    this.handleIsActive = this.handleIsActive.bind(this);
+
+    getCurrentUrl(url => this.setState({ url }));
+
+    this.toggleIsActive = this.toggleIsActive.bind(this);
+    this.handleOnRemove = this.handleOnRemove.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   componentDidMount() {
     whitelist.getWhitelist()
-      .then((urls) => {
-        this.setState({ whitelist: urls });
-      })
-      .catch(err => console.log(err));
+    .then((urls) => {
+      this.setState({ whitelist: urls });
+      this.setState({ isActive: urls.find(url => url === this.state.url) });
+    })
+    .catch(err => console.log(err));
   }
 
-  onClick(url) {
-    whitelist.removeUrlFromWhitelist(url)
-      .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
-      .catch(err => console.log(err));
+  handleOnRemove() {
+    this.toggleIsActive();
+
+    whitelist.removeUrlFromWhitelist(this.state.url)
+    .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
+    .then(reloadCurrentTab)
+    .catch(err => console.log(err));
   }
 
-  onChange(e) {
-    const input = e.target.value;
-    if (this.verifyInput(input)) {
-      this.setState({ url: input, valid: true });
-    } else {
-      this.setState({ valid: false });
-    }
-  }
-
-  verifyInput(input) {
-    if (urlRegex.test(input)) {
-      return input;
-    }
-  }
-
-  handleSubmit(e) {
-    whitelist.addUrlToWhitelist(this.state.url)
-      .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
-      .catch(err => console.log(err));
+  handleOnClick(e) {
     e.preventDefault();
+
+    this.toggleIsActive();
+    whitelist.addUrlToWhitelist(this.state.url)
+    .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
+    .then(reloadCurrentTab)
+    .catch(err => console.log(err));
   }
 
-  handleIsActive() {
+  toggleIsActive() {
     const { isActive } = this.state;
     this.setState({
       isActive: !isActive
@@ -67,27 +56,20 @@ export default class WhitelistManager extends React.Component {
   }
 
   render() {
-    const { isActive } = this.state;
-    const buttonMsg = isActive ? 'close' : 'advanced options';
-    const containerStyles = isActive ? 'whitelist whitelist-isActive' : 'whitelist';
+    const { isActive, url } = this.state;
+    const { color } = this.props;
 
     return (
-      <div className={containerStyles}>
-        <button onClick={this.handleIsActive} className="whitelist--button">{buttonMsg}</button>
-        <div className="whitelist--content">
-          <form className="whitelist--form" onSubmit={this.handleSubmit.bind(this)}>
-            <label className="whitelist--inputLabel">Whitelist URL</label>
-            <input className="whitelist--input" style={this.state.valid ? validInput : invalidInput} type="text" placeholder="http(s)://..." onChange={this.onChange.bind(this)}/>
-            <input className="whitelist--submit" disabled={!this.state.valid} type="submit" value="Add" />
-          </form>
-          <ul className="whitelist--list">
-            {
-              this.state.whitelist.map((url, i) => {
-                return <li key={i} onClick={this.onClick.bind(this, url)}> {url} </li>;
-              })
-            }
-          </ul>
-        </div>
+      <div className="whitelist--wrapper">
+        <span className="whitelist--text">
+          {url}
+        </span>
+        <input
+          onChange={(isActive) ? this.handleOnRemove : this.handleOnClick}
+          className={`toggle whitelist--toggle`}id="cb4" type="checkbox"
+          checked={this.state.isActive}
+        />
+        <label className="whitelist--toggle-label" htmlFor="cb4"></label>
       </div>
     );
   }

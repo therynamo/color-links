@@ -1,8 +1,13 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import WhitelistManager from './whitelist.jsx';
 import ColorButton from './colorButton.jsx';
-const colors = ['green', 'blue', 'red', 'orange', 'cyan'];
+const colors = [
+  '#37d67a',
+  '#2ccce4',
+  '#06A77D',
+  '#ff8a65',
+  '#1E91D6'
+];
 
 export default class Popup extends React.Component {
   constructor() {
@@ -16,7 +21,6 @@ export default class Popup extends React.Component {
     this.getActiveColor()
       .then((activeColor) => {
         this.setState({ activeColor });
-        findDOMNode(this.refs[activeColor].refs.button).focus();
       })
       .catch(error => {
         console.log(error);
@@ -45,8 +49,16 @@ export default class Popup extends React.Component {
   render() {
     return (
       <div className="colorLinks">
+        <span style={{
+          color: this.state.activeColor,
+          paddingBottom: '5px',
+          transition: 'color .5s'
+        }}
+        >
+         A Quick Brown Fox Jumped
+        </span>
         <div className="colorLinks--grid">
-          {
+                    {
             colors.map((color) => {
               return (
                 <ColorButton
@@ -59,7 +71,7 @@ export default class Popup extends React.Component {
             })
           }
         </div>
-        <WhitelistManager />
+        <WhitelistManager color={this.state.activeColor} />
       </div>
     );
   }

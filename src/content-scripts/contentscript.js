@@ -4,12 +4,8 @@ const displayStyles = function displayStyles(location) {
   return new Promise((resolve) => {
     chrome.storage.sync.get('whitelist', (result) => {
       const arr = (result.whitelist && result.whitelist.length) ? result.whitelist : [];
-      const isWhitelisted = arr.filter((el) => {
-        // This is expensive
-        // ✍️ TODO: Make better
-        const urlRegex = new RegExp(el);
-        return urlRegex.test(location);
-      });
+      const { origin } = location;
+      const isWhitelisted = arr.filter((url) => url === origin);
 
       resolve(isWhitelisted.length);
     });
@@ -23,10 +19,10 @@ const initializeStylesheet = function initializeStylesheet() {
   document.head.appendChild(styleElement);
   chrome.storage.sync.get('color', (results) => {
     if (results.color) {
-      styleElement.sheet.insertRule('a:visited {color: ' + results.color + '}', 0);
+      styleElement.sheet.insertRule('a:visited {color: ' + results.color + ';}', 0);
       return;
     }
-    styleElement.sheet.insertRule('a:visited {color: orange}', 0);
+    styleElement.sheet.insertRule('a:visited {color: orange;}', 0);
   });
 };
 

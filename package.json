@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp clean && gulp watch",
+    "build:dev": "gulp build:dev && gulp webpack:dev",
+    "dev": "npm run build:dev && gulp clean && gulp watch",
     "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js && gulp zip"
   },
   "repository": {
@@ -43,6 +44,7 @@
     "mocha": "^2.3.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "urijs": "^1.18.12",
     "webpack": "^1.12.9",
     "webpack-stream": "^3.1.0"
   },

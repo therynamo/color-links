@@ -1,14 +1,28 @@
 body {
+  color: #000000;
+  font-family: helvetica;
+  font-weight: 200;
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
-  margin: 0
+  margin: 0;
 }
 
 
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.colorLinks {
+  padding: 1em;
+  transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
+  width: 200px;
+}
 
-button {
+.colorLinks--grid {
+  background: white;
+  padding: 10px 0;
+  position: relative;
+}
+
+.colorLinks--button {
   border-radius: 50%;
   height: 2em;
   width: 2em;
@@ -19,7 +33,7 @@ button {
   transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
-button:focus {
+.colorLinks--button:focus {
   /*border-radius: 33%;*/
   outline: none;
   box-shadow: 0 0 0 2px #000;
@@ -27,15 +41,8 @@ button:focus {
   opacity: 1;
 }
 
-.colorLinks {
-  width: 5em;
-  padding: 1em;
-  transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
-}
-
 .colorLinks--grid {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .colorLinks--grid > * {
@@ -43,6 +50,109 @@ button:focus {
   text-align: center;
 }
 
-.colorLinks--grid > div:nth-child(3) {
-  flex: 1 1 100%;
+/* whitelist
+_________________________________________________________*/
+
+.whitelist--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.toggle {
+  display: none;
+}
+.toggle, .toggle:after, .toggle:before, .toggle *, .toggle *:after, .toggle *:before, .toggle + .whitelist--toggle-label {
+  box-sizing: border-box;
+}
+
+.toggle::selection, .toggle:after::selection, .toggle:before::selection, .toggle *::selection, .toggle *:after::selection, .toggle *:before::selection, .toggle + .whitelist--toggle-label::selection {
+  background: none;
+}
+
+.toggle + .whitelist--toggle-label {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.toggle + .whitelist--toggle-label:after, .toggle + .whitelist--toggle-label:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+
+
+.toggle + .whitelist--toggle-label:after {
+  left: 0;
+}
+.toggle + .whitelist--toggle-label:before {
+  display: none;
+}
+.toggle:checked + .whitelist--toggle-label:after {
+  left: 50%;
+}
+
+
+.whitelist--toggle + .whitelist--toggle-label {
+  padding: 2px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #fff;
+  border: 4px solid #ED6347;
+  border-radius: 2em;
+}
+.whitelist--toggle + .whitelist--toggle-label:after {
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #ED6347;
+  content: "";
+  border-radius: 1em;
+}
+.whitelist--toggle:checked + .whitelist--toggle-label {
+  border: 4px solid #47C1BF;
+}
+.whitelist--toggle:checked + .whitelist--toggle-label:after {
+  left: 50%;
+  background: #47C1BF;
+}
+
+.whitelist-isActive{
+  animation: slide 200ms ease-in forwards;
+}
+
+.whitelist--text {
+  display: flex;
+  flex: 1 0 100%;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+
+  margin-bottom: 8px;
+  background: #F2F4F7;
+  border-radius: 3px;
+  padding: 3px;
+  }
+
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 58px;
+  }
 }

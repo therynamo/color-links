@@ -22,7 +22,7 @@ const initializeStylesheet = function initializeStylesheet() {
       styleElement.sheet.insertRule('a:visited {color: ' + results.color + ';}', 0);
       return;
     }
-    styleElement.sheet.insertRule('a:visited {color: orange;}', 0);
+    styleElement.sheet.insertRule('a:visited {}', 0);
   });
 };
 

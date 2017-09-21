@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Color Links",
   "description": "This extension allows you to change the color of your visited links",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "icons": {
     "16": "./images/links16.png",
     "48": "./images/links48.png",

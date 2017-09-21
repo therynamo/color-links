@@ -1,6 +1,6 @@
 {
   "name": "color-links",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Help Color Blind Individuals See Visited Links",
   "main": "index.js",
   "scripts": {

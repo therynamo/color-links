@@ -1,6 +1,7 @@
 import React from 'react';
 import WhitelistManager from './whitelist.jsx';
 import ColorButton from './colorButton.jsx';
+import CustomInput from './customInput.jsx';
 const colors = [
   '#37d67a',
   '#2ccce4',
@@ -13,7 +14,8 @@ export default class Popup extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeColor: ''
+      activeColor: '',
+      showCustomInput: false,
     };
   }
 
@@ -31,7 +33,10 @@ export default class Popup extends React.Component {
     chrome.tabs.query({ active: true, currentWindow: true }, function tabsQuery(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, { color }, function tabsSendMessage() {});
     });
-    this.setState({ activeColor: color });
+    this.setState({
+      activeColor: color,
+      showCustomInput: false
+    });
   }
 
   getActiveColor() {
@@ -44,6 +49,10 @@ export default class Popup extends React.Component {
         }
       });
     });
+  }
+
+  showCustomInput() {
+    this.setState({ showCustomInput: true });
   }
 
   render() {
@@ -70,7 +79,17 @@ export default class Popup extends React.Component {
               );
             })
           }
+
+          <div>
+            <button className="colorLinks--button" onClick={this.showCustomInput.bind(this)} ref="button">
+              #
+            </button>
+          </div>
         </div>
+
+        {this.state.showCustomInput ? (
+            <CustomInput clickHandler={this.onClickHandler.bind(this)}/>
+        ) : null}
         <WhitelistManager color={this.state.activeColor} />
       </div>
     );

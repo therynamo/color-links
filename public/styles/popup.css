@@ -50,6 +50,17 @@ body {
   text-align: center;
 }
 
+/* custom input
+_________________________________________________________*/
+.colorLinks--custom {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.colorLinks--custom > * {
+  flex: 1 1 50%;
+  text-align: center;
+}
 /* whitelist
 _________________________________________________________*/
 

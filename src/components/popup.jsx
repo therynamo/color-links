@@ -93,7 +93,7 @@ export default class Popup extends React.Component {
         </div>
 
         {this.state.showCustomInput ? (
-            <CustomInput clickHandler={this.onClickHandler.bind(this)}/>
+            <CustomInput color={this.state.activeColor} saveHandler={this.onClickHandler.bind(this)}/>
         ) : null}
         <WhitelistManager color={this.state.activeColor} />
       </div>

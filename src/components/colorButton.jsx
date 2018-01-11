@@ -9,7 +9,7 @@ export default class ColorButton extends React.Component {
 
     return (
       <div>
-        <button className="colorLinks--button" onClick={this.props.clickHandler} style={buttonStyle} ref="button">
+        <button className={`colorLinks--button${this.props.active ? ' active' : ''}`} onClick={this.props.clickHandler} style={buttonStyle} ref="button">
         </button>
       </div>
     );
@@ -18,5 +18,6 @@ export default class ColorButton extends React.Component {
 
 ColorButton.propTypes = {
   clickHandler: React.PropTypes.func,
-  color: React.PropTypes.string
+  color: React.PropTypes.string,
+  active: React.PropTypes.bool,
 };

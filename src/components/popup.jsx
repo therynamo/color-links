@@ -75,6 +75,7 @@ export default class Popup extends React.Component {
                   color={color}
                   clickHandler={this.onClickHandler.bind(this, color)}
                   key={color}
+                  active={color === this.state.activeColor}
                 />
               );
             })

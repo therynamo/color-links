@@ -81,9 +81,7 @@ export default class Popup extends React.Component {
           }
 
           <div>
-            <button className="colorLinks--button" onClick={this.showCustomInput.bind(this)} ref="button">
-              #
-            </button>
+            <button className="colorLinks--button" onClick={this.showCustomInput.bind(this)} ref="button">#</button>
           </div>
         </div>
 

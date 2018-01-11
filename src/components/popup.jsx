@@ -22,7 +22,10 @@ export default class Popup extends React.Component {
   componentDidMount() {
     this.getActiveColor()
       .then((activeColor) => {
-        this.setState({ activeColor });
+        this.setState({
+          activeColor,
+          showCustomInput: !colors.includes(activeColor),
+        });
       })
       .catch(error => {
         console.log(error);
@@ -52,7 +55,10 @@ export default class Popup extends React.Component {
   }
 
   showCustomInput() {
-    this.setState({ showCustomInput: true });
+    this.setState({
+      activeColor: '',
+      showCustomInput: true,
+    });
   }
 
   render() {
@@ -82,7 +88,7 @@ export default class Popup extends React.Component {
           }
 
           <div>
-            <button className="colorLinks--button" onClick={this.showCustomInput.bind(this)} ref="button">#</button>
+            <button className={`colorLinks--button${!colors.includes(this.state.activeColor) ? ' active' : ''}`} onClick={this.showCustomInput.bind(this)} ref="button">#</button>
           </div>
         </div>
 

@@ -36,6 +36,7 @@ body {
   transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
+.colorLinks--button.active,
 .colorLinks--button:focus {
   /*border-radius: 33%;*/
   outline: none;

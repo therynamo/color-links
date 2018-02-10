@@ -5,13 +5,14 @@
 
 ### Initial Problem
 
-Browsing google as a color-blind individual, it becomes frustrating after a while not
+Browsing the web on sites like google as a color-blind individual, it becomes frustrating after a while not
 knowing if you've already visited a link or not.
 
 ### Solution
 
-Color Links aims to make it a bit easier to search google, for the color-blind.
-This chrome extension allows you to browse google with full awareness of which links
+Color Links aims to make it a bit easier to search around the web, for the color-blind.
+
+When enabled this chrome extension allows you to browse any website with full awareness of which links
 you've clicked.
 
 Development
@@ -23,8 +24,8 @@ To get started, clone the project and change into the root directory.
 
 ```shell
 nvm use
-npm i
-npm run lint
+yarn
+yarn lint
 ```
 
 ### Running The Project
@@ -35,14 +36,14 @@ For development, you'll want to run a few commands to get going.
 ```shell
 gulp build:dev   # build content scripts
 gulp webpack:dev # build popup components
-npm run dev      # watch files and build above two commands every change
+yarn dev      # watch files and build above two commands every change
 ```
 
 Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the entire folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
 
 #### Prod
 ```shell
-npm run build # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
+yarn build # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
 ```
 
 **note**: if you'd like to test your prod build, you should add the dist folder of the project, not the entire working directory, when doing a `Load unpacked extension...`. 

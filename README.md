@@ -53,11 +53,6 @@ Contributing
 
 If you'd like to contribute to this repository, feel free, just fork the project and make a pull request.
 
-Todo
-===
-
-- Create hex input or slider (pr's welcome)
-
 License
 ===
 

@@ -1,6 +1,6 @@
 body {
   color: #000000;
-  font-family: helvetica;
+  font-family: helvetica, sans-serif;
   font-weight: 200;
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
   margin: 0;
@@ -26,6 +26,9 @@ body {
   border-radius: 50%;
   height: 2em;
   width: 2em;
+  padding: 0;
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
   border: none;
   box-shadow: none;
   cursor: pointer;
@@ -33,6 +36,7 @@ body {
   transition: border 200ms ease-in-out, box-shadow 200ms ease-in-out, border-radius 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
+.colorLinks--button.active,
 .colorLinks--button:focus {
   /*border-radius: 33%;*/
   outline: none;
@@ -50,6 +54,19 @@ body {
   text-align: center;
 }
 
+/* custom input
+_________________________________________________________*/
+.colorLinks--custom {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.colorLinks--custom > * {
+  flex: 1 1 50%;
+  text-align: center;
+  border: 1px solid darkgray;
+  border-radius: 3px;
+}
 /* whitelist
 _________________________________________________________*/
 

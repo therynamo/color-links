@@ -56,7 +56,6 @@ export default class Popup extends React.Component {
 
   showCustomInput() {
     this.setState({
-      activeColor: '',
       showCustomInput: true,
     });
   }

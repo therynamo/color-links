@@ -11,7 +11,7 @@ const webpack = require('webpack');
 const gwebpack = require('webpack-stream');
 
 const path = {
-  js: ['!node_modules/**', './**/*.js', './**/*.jsx'],
+  js: ['!colorlinks', '!node_modules/**', './**/*.js', './**/*.jsx'],
   contentscripts: ['!node_modules/**', './src/content-scripts/**/*.js'],
   images: './public/images/**',
   styles: './public/styles/**',

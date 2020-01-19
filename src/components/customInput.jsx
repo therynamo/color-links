@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export default class CustomInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      color: '',
+      color: ""
     };
   }
 
@@ -22,8 +22,15 @@ export default class CustomInput extends React.Component {
 
   render() {
     return (
-      <form className="colorLinks--custom" onSubmit={this.saveHandler.bind(this)}>
-        <input placeholder="#ff0000" value={this.state.color} onChange={this.onChange.bind(this)} />
+      <form
+        className="colorLinks--custom"
+        onSubmit={this.saveHandler.bind(this)}
+      >
+        <input
+          placeholder="#ff0000"
+          value={this.state.color}
+          onChange={this.onChange.bind(this)}
+        />
         <button onClick={this.saveHandler.bind(this)} ref="button">
           Save
         </button>
@@ -31,8 +38,3 @@ export default class CustomInput extends React.Component {
     );
   }
 }
-
-CustomInput.propTypes = {
-  color: React.PropTypes.string,
-  saveHandler: React.PropTypes.func,
-};

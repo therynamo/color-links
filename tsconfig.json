@@ -1,0 +1,12 @@
+// tsconfig.json
+// assuming your ts sources are in ./src/
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "~*": ["./*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

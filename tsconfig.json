@@ -2,6 +2,9 @@
 // assuming your ts sources are in ./src/
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": ["DOM", "ES2015", "ES2017", "ES6"],
+    "target": "ES5",
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {

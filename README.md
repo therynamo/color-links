@@ -1,7 +1,6 @@
 [We're On The Chrome Store!](https://chrome.google.com/webstore/detail/color-links/hiponeioelghhaljfflaaflpccedbdem)
 
-![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master) [![Code Climate](https://codeclimate.com/github/therynamo/color-links/badges/gpa.svg)](https://codeclimate.com/github/therynamo/color-links) Color Links <img src="./public/images/links128.png" width="24px" height="24px" />
-===
+# ![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master) [![Code Climate](https://codeclimate.com/github/therynamo/color-links/badges/gpa.svg)](https://codeclimate.com/github/therynamo/color-links) Color Links <img src="./public/images/links128.png" width="24px" height="24px" />
 
 ### Initial Problem
 
@@ -15,8 +14,7 @@ Color Links aims to make it a bit easier to search around the web, for the color
 When enabled this chrome extension allows you to browse any website with full awareness of which links
 you've clicked.
 
-Development
-===
+# Development
 
 To get started, clone the project and change into the root directory.
 
@@ -32,29 +30,27 @@ yarn lint
 
 #### Dev Mode
 
-For development, you'll want to run a few commands to get going.
 ```shell
-gulp build:dev   # build content scripts
-gulp webpack:dev # build popup components
-yarn dev      # watch files and build above two commands every change
+yarn start
+# or
+yarn build
 ```
 
 Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the entire folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
 
 #### Prod
+
 ```shell
 yarn build # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
 ```
 
-**note**: if you'd like to test your prod build, you should add the dist folder of the project, not the entire working directory, when doing a `Load unpacked extension...`. 
+**note**: if you'd like to test your prod build, you should add the dist folder of the project, not the entire working directory, when doing a `Load unpacked extension...`.
 
-Contributing
-===
+# Contributing
 
 If you'd like to contribute to this repository, feel free, just fork the project and make a pull request.
 
-License
-===
+# License
 
 The MIT License (MIT)
 Copyright (c) <year> <copyright holders>

@@ -1,6 +1,8 @@
 [We're On The Chrome Store!](https://chrome.google.com/webstore/detail/color-links/hiponeioelghhaljfflaaflpccedbdem)
 
-# ![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master) [![Code Climate](https://codeclimate.com/github/therynamo/color-links/badges/gpa.svg)](https://codeclimate.com/github/therynamo/color-links) Color Links <img src="./public/images/links128.png" width="24px" height="24px" />
+![Tests & Build](https://github.com/therynamo/color-links/workflows/Test%20&%20Build/badge.svg)
+
+[![Coverage Status](https://coveralls.io/repos/github/therynamo/color-links/badge.svg?branch=master)](https://coveralls.io/github/therynamo/color-links?branch=master)
 
 ### Initial Problem
 

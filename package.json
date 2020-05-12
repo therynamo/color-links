@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src",
-    "test": "jest --watchAll",
+    "test": "jest",
     "start": "parcel src/color-links.html src/content-scripts/contentscript.ts",
     "build": "NODE_ENV=production rm -rf dist && parcel build src/color-links.html src/content-scripts/contentscript.ts --public-url ./"
   },

@@ -1,10 +1,16 @@
 import React from 'react';
 
-const ColorButton = ({ color }) => (
+interface OwnProps {
+  color: string;
+  clickHandler: () => void;
+  active: boolean;
+}
+
+const ColorButton = ({ color, clickHandler, active }) => (
   <div>
     <button
-      className={`colorLinks--button${this.props.active ? ' active' : ''}`}
-      onClick={this.props.clickHandler}
+      className={`colorLinks--button${active ? ' active' : ''}`}
+      onClick={clickHandler}
       style={{ color: 'white', background: color }}
       ref="button"
     ></button>

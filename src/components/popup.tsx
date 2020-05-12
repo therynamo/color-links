@@ -1,112 +1,85 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from 'react';
 
-import WhitelistManager from "./whitelist";
-import ColorButton from "./colorButton";
-import CustomInput from "./customInput";
-const colors = ["#37d67a", "#2ccce4", "#06A77D", "#ff8a65", "#1E91D6"];
+import WhitelistManager from './whitelist';
+import ColorButton from './colorButton';
+import CustomInput from './customInput';
+const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
 
-export default class Popup extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      activeColor: "",
-      showCustomInput: false,
-    };
-  }
+const Popup = () => {
+  const [activeColor, setActiveColor] = useState('');
+  const [showCustomInput, setShowCustomInput] = useState(false);
 
-  componentDidMount() {
-    this.getActiveColor()
-      .then((activeColor) => {
-        this.setState({
-          activeColor,
-          showCustomInput: !colors.includes(activeColor),
+  const onColorChange = useCallback((color) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function tabsQuery(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { color }, function tabsSendMessage() {});
+    });
+
+    setActiveColor(color);
+    setShowCustomInput(false);
+  }, []);
+
+  useEffect(() => {
+    async function getActiveColor() {
+      let result = '';
+
+      try {
+        result = await new Promise((resolve, reject) => {
+          chrome.storage.sync.get('color', (results) => {
+            if (results.color) {
+              resolve(results.color);
+            } else {
+              reject();
+            }
+          });
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+      } catch (e) {
+        throw new Error('Did Not Receive Color');
+      }
 
-  onClickHandler(color) {
-    chrome.tabs.query({ active: true, currentWindow: true }, function tabsQuery(
-      tabs
-    ) {
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { color },
-        function tabsSendMessage() {}
-      );
-    });
-    this.setState({
-      activeColor: color,
-      showCustomInput: false,
-    });
-  }
+      if (!colors.includes(activeColor)) setShowCustomInput(true);
 
-  getActiveColor() {
-    return new Promise((resolve, reject) => {
-      chrome.storage.sync.get("color", (results) => {
-        if (results.color) {
-          resolve(results.color);
-        } else {
-          reject(new Error("Did Not Receive Color"));
-        }
-      });
-    });
-  }
+      setActiveColor(result);
+    }
 
-  showCustomInput() {
-    this.setState({
-      showCustomInput: true,
-    });
-  }
+    getActiveColor();
+  }, []);
 
-  render() {
-    return (
-      <div className="colorLinks">
-        <span
-          style={{
-            color: this.state.activeColor,
-            paddingBottom: "5px",
-            transition: "color .5s",
-          }}
-        >
-          A Quick Brown Fox Jumped
-        </span>
-        <div className="colorLinks--grid">
-          {colors.map((color) => {
-            return (
-              <ColorButton
-                ref={color}
-                color={color}
-                clickHandler={this.onClickHandler.bind(this, color)}
-                key={color}
-                active={color === this.state.activeColor}
-              />
-            );
-          })}
+  return (
+    <div className="colorLinks">
+      <span
+        style={{
+          color: activeColor,
+          paddingBottom: '5px',
+          transition: 'color .5s',
+        }}
+      >
+        A Quick Brown Fox Jumped
+      </span>
+      <div className="colorLinks--grid">
+        {colors.map((color) => {
+          return (
+            <ColorButton
+              color={color}
+              clickHandler={() => onColorChange(color)}
+              key={color}
+              active={color === activeColor}
+            />
+          );
+        })}
 
-          <div>
-            <button
-              className={`colorLinks--button${
-                !colors.includes(this.state.activeColor) ? " active" : ""
-              }`}
-              onClick={this.showCustomInput.bind(this)}
-              ref="button"
-            >
-              #
-            </button>
-          </div>
+        <div>
+          <button
+            className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
+            onClick={() => setShowCustomInput(true)}
+            ref="button"
+          >
+            #
+          </button>
         </div>
-
-        {this.state.showCustomInput ? (
-          <CustomInput
-            color={this.state.activeColor}
-            saveHandler={this.onClickHandler.bind(this)}
-          />
-        ) : null}
-        <WhitelistManager color={this.state.activeColor} />
       </div>
-    );
-  }
-}
+
+      {showCustomInput && <CustomInput color={activeColor} saveHandler={onColorChange} />}
+      <WhitelistManager />
+    </div>
+  );
+};

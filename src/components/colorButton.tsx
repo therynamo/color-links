@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 interface OwnProps {
   color: string;
@@ -6,14 +6,15 @@ interface OwnProps {
   active: boolean;
 }
 
-const ColorButton = ({ color, clickHandler, active }) => (
+const ColorButton: FC<OwnProps> = ({ color, clickHandler, active }) => (
   <div>
     <button
+      aria-label="save color"
+      type="button"
       className={`colorLinks--button${active ? ' active' : ''}`}
       onClick={clickHandler}
       style={{ color: 'white', background: color }}
-      ref="button"
-    ></button>
+    />
   </div>
 );
 

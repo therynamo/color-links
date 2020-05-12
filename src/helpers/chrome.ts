@@ -1,19 +1,18 @@
 import uriParser from 'urijs';
 
-export const getCurrentUrl = (cb) => {
-  chrome.tabs.query({ currentWindow: true, active: true },
-    (foundTabs) => {
+export const getCurrentUrl = () =>
+  new Promise<string>((resolve, reject) => {
+    chrome.tabs.query({ currentWindow: true, active: true }, (foundTabs) => {
       if (foundTabs.length > 0) {
         const { url = '' } = foundTabs[0];
         const origin = uriParser(url).origin();
 
-        cb(origin);
+        resolve(origin);
       } else {
-        cb(null);
+        reject();
       }
-    }
-  );
-};
+    });
+  });
 
 export const reloadCurrentTab = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (arrayOfTabs) => {

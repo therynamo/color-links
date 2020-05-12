@@ -1366,6 +1366,11 @@
     "@types/testing-library__dom" "*"
     pretty-format "^25.1.0"
 
+"@types/urijs@^1.19.8":
+  version "1.19.8"
+  resolved "https://registry.yarnpkg.com/@types/urijs/-/urijs-1.19.8.tgz#a66b2fd8b1d3cf3ef5bae7ca093b7d1b50e48c0a"
+  integrity sha512-SVQd2Qq0oL+b8VtJbQyv0cMIdU7fbRDcg2JIpcBvv+GUayJ3c5Ll1K+iivZl6ifcI6NbYcwjqDjljDFSiSGOeA==
+
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://binrepo.target.com/artifactory/api/npm/npm/@types/yargs-parser/-/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"

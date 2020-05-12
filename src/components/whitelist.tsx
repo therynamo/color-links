@@ -1,75 +1,77 @@
-import React from 'react';
-import Whitelist from '../helpers/Whitelist';
+import React, { useState, useEffect, useCallback } from 'react';
+import WhitelistClass from '../helpers/Whitelist';
 import { getCurrentUrl, reloadCurrentTab } from '../helpers/chrome';
 
-const whitelist = new Whitelist();
+const Whitelist = new WhitelistClass();
 
-export default class WhitelistManager extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      whitelist: [],
-      isActive: false,
-      url: null,
-    };
+const WhitelistManager = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [url, setUrl] = useState('');
 
-    getCurrentUrl(url => this.setState({ url }));
+  useEffect(() => {
+    async function initializeWhitelist() {
+      setUrl(await getCurrentUrl());
 
-    this.toggleIsActive = this.toggleIsActive.bind(this);
-    this.handleOnRemove = this.handleOnRemove.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
-  }
+      let urls = null;
 
-  componentDidMount() {
-    whitelist.getWhitelist()
-    .then((urls) => {
-      this.setState({ whitelist: urls });
-      this.setState({ isActive: urls.find(url => url === this.state.url) });
-    })
-    .catch(err => console.log(err));
-  }
+      try {
+        urls = await Whitelist.getWhitelist();
+      } catch (e) {
+        console.log(e);
+      }
 
-  handleOnRemove() {
-    this.toggleIsActive();
+      setIsActive(urls.some((u) => u === url));
+    }
 
-    whitelist.removeUrlFromWhitelist(this.state.url)
-    .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
-    .then(reloadCurrentTab)
-    .catch(err => console.log(err));
-  }
+    initializeWhitelist();
+  }, []);
 
-  handleOnClick(e) {
+  const handleOnRemove = useCallback(() => {
+    setIsActive((prevState) => !prevState);
+
+    async function removeUrl() {
+      try {
+        Whitelist.removeUrlFromWhitelist(url);
+      } catch (e) {
+        console.log(e);
+      }
+
+      reloadCurrentTab();
+    }
+
+    removeUrl();
+  }, []);
+
+  const handleOnClick = useCallback((e) => {
     e.preventDefault();
+    setIsActive((prevState) => !prevState);
 
-    this.toggleIsActive();
-    whitelist.addUrlToWhitelist(this.state.url)
-    .then(whitelistArr => this.setState({ whitelist: whitelistArr }))
-    .then(reloadCurrentTab)
-    .catch(err => console.log(err));
-  }
+    async function addUrl() {
+      try {
+        Whitelist.addUrlToWhitelist(url);
+      } catch (e) {
+        console.log(e);
+      }
 
-  toggleIsActive() {
-    const { isActive } = this.state;
-    this.setState({
-      isActive: !isActive
-    });
-  }
+      reloadCurrentTab();
+    }
 
-  render() {
-    const { isActive, url } = this.state;
+    addUrl();
+  }, []);
 
-    return (
-      <div className="whitelist--wrapper">
-        <span className="whitelist--text">
-          {url}
-        </span>
-        <input
-          onChange={(isActive) ? this.handleOnRemove : this.handleOnClick}
-          className={`toggle whitelist--toggle`}id="cb4" type="checkbox"
-          checked={this.state.isActive}
-        />
-        <label className="whitelist--toggle-label" htmlFor="cb4"></label>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="whitelist--wrapper">
+      <span className="whitelist--text">{url}</span>
+      <label className="whitelist--toggle-label" htmlFor="cb4" />
+      <input
+        onChange={isActive ? handleOnRemove : handleOnClick}
+        className="toggle whitelist--toggle"
+        id="cb4"
+        type="checkbox"
+        checked={isActive}
+      />
+    </div>
+  );
+};
+
+export default WhitelistManager;

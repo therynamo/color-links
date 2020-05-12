@@ -2,6 +2,7 @@
 // assuming your ts sources are in ./src/
 {
   "compilerOptions": {
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["DOM", "ES2015", "ES2017", "ES6"],
     "target": "ES5",

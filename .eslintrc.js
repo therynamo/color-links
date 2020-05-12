@@ -12,4 +12,9 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:jest/recommended',
   ],
+  rules: {
+    'implicit-arrow-linebreak': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'react/prop-types': 'off',
+  },
 };

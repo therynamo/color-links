@@ -3,6 +3,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import WhitelistManager from './whitelist';
 import ColorButton from './colorButton';
 import CustomInput from './customInput';
+
 const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
 
 const Popup = () => {
@@ -10,8 +11,8 @@ const Popup = () => {
   const [showCustomInput, setShowCustomInput] = useState(false);
 
   const onColorChange = useCallback((color) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function tabsQuery(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, { color }, function tabsSendMessage() {});
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { color }, () => {});
     });
 
     setActiveColor(color);
@@ -33,7 +34,7 @@ const Popup = () => {
           });
         });
       } catch (e) {
-        throw new Error('Did Not Receive Color');
+        console.log('Did Not Receive Color');
       }
 
       if (!colors.includes(activeColor)) setShowCustomInput(true);
@@ -56,22 +57,20 @@ const Popup = () => {
         A Quick Brown Fox Jumped
       </span>
       <div className="colorLinks--grid">
-        {colors.map((color) => {
-          return (
-            <ColorButton
-              color={color}
-              clickHandler={() => onColorChange(color)}
-              key={color}
-              active={color === activeColor}
-            />
-          );
-        })}
+        {colors.map((color) => (
+          <ColorButton
+            color={color}
+            clickHandler={() => onColorChange(color)}
+            key={color}
+            active={color === activeColor}
+          />
+        ))}
 
         <div>
           <button
+            type="button"
             className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
             onClick={() => setShowCustomInput(true)}
-            ref="button"
           >
             #
           </button>
@@ -83,3 +82,5 @@ const Popup = () => {
     </div>
   );
 };
+
+export default Popup;

@@ -6,3 +6,4 @@ public/*.js
 public/*.map
 .DS_Store
 .cache
+yarn-error.log

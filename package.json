@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production rm -rf dist && parcel build src/color-links.html src/content-scripts/contentscript.ts --public-url ./"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
@@ -42,10 +42,17 @@
     "@babel/preset-typescript": "^7.9.0",
     "@testing-library/react": "^10.0.4",
     "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.32.0",
     "babel-jest": "^26.0.1",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^2.1.1",
-    "eslint-plugin-react": "^3.13.1",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-typescript": "^7.2.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "jest": "^26.0.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.3.1",

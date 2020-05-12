@@ -10,7 +10,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
 
   return (
     <form
-      aria-label="custom-form"
+      aria-label="custom form"
       className="colorLinks--custom"
       onSubmit={() => saveHandler(currentColor)}
     >

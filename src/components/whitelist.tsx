@@ -62,7 +62,7 @@ const WhitelistManager = () => {
   return (
     <div className="whitelist--wrapper">
       <span className="whitelist--text">{url}</span>
-      <label className="whitelist--toggle-label" htmlFor="cb4" />
+      <label aria-label="whitelist toggle" className="whitelist--toggle-label" htmlFor="cb4" />
       <input
         onChange={isActive ? handleOnRemove : handleOnClick}
         className="toggle whitelist--toggle"

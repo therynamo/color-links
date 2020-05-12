@@ -1,6 +1,7 @@
 // tsconfig.json
 // assuming your ts sources are in ./src/
 {
+  "exclude": ["./jest", "jest.config.js", "./**/__mocks__/*"],
   "compilerOptions": {
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,

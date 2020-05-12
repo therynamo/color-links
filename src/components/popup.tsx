@@ -3,46 +3,35 @@ import React, { useCallback, useState, useEffect } from 'react';
 import WhitelistManager from './whitelist';
 import ColorButton from './colorButton';
 import CustomInput from './customInput';
+import { getActiveColor, saveActiveColor } from '../helpers/chrome';
 
-const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
+export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
 
 const Popup = () => {
   const [activeColor, setActiveColor] = useState('');
   const [showCustomInput, setShowCustomInput] = useState(false);
 
   const onColorChange = useCallback((color) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { color }, () => {});
-    });
-
+    saveActiveColor(color);
     setActiveColor(color);
     setShowCustomInput(false);
   }, []);
 
   useEffect(() => {
-    async function getActiveColor() {
+    async function getActiveColorEffect() {
       let result = '';
 
       try {
-        result = await new Promise((resolve, reject) => {
-          chrome.storage.sync.get('color', (results) => {
-            if (results.color) {
-              resolve(results.color);
-            } else {
-              reject();
-            }
-          });
-        });
+        result = await getActiveColor();
       } catch (e) {
         console.log('Did Not Receive Color');
       }
 
-      if (!colors.includes(activeColor)) setShowCustomInput(true);
-
       setActiveColor(result);
+      if (!colors.includes(activeColor)) setShowCustomInput(true);
     }
 
-    getActiveColor();
+    getActiveColorEffect();
   }, []);
 
   return (

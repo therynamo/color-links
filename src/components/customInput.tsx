@@ -16,7 +16,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
     >
       <input
         placeholder="#ff0000"
-        aria-label="custom-input"
+        aria-label="custom input"
         value={currentColor}
         onChange={(e) => setColor(e.target.value)}
       />

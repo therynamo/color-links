@@ -4,3 +4,4 @@ node_modules/
 .idea/
 babel.config.js
 .prettierrc.js
+coverage/

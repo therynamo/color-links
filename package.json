@@ -9,9 +9,12 @@
     "start": "parcel src/color-links.html src/content-scripts/contentscript.ts",
     "build": "NODE_ENV=production rm -rf dist && parcel build src/color-links.html src/content-scripts/contentscript.ts --public-url ./"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/therynamo/color-links.git"
+    "url": "ssh://git@github.com:therynamo/color-links.git"
   },
   "keywords": [
     "color",

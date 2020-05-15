@@ -28,7 +28,7 @@ const Popup = () => {
       }
 
       setActiveColor(result);
-      if (!colors.includes(activeColor)) setShowCustomInput(true);
+      setShowCustomInput(!colors.includes(result));
     }
 
     getActiveColorEffect();
@@ -58,6 +58,7 @@ const Popup = () => {
         <div>
           <button
             type="button"
+            aria-label="custom color"
             className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
             onClick={() => setShowCustomInput(true)}
           >

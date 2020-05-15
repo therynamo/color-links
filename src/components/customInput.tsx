@@ -20,9 +20,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
         value={currentColor}
         onChange={(e) => setColor(e.target.value)}
       />
-      <button type="submit" onClick={() => saveHandler(currentColor)}>
-        Save
-      </button>
+      <button type="submit">Save</button>
     </form>
   );
 };

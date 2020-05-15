@@ -9,6 +9,10 @@ jest.mock('../../helpers/chrome.ts');
 jest.mock('../../helpers/Whitelist.ts');
 
 describe('Popup', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should retreieve an active color and not show custom input when found', async () => {
     let utils = {} as RenderResult;
 
@@ -20,13 +24,34 @@ describe('Popup', () => {
 
     (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(colors[0]);
 
+    await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
+
     const colorButtons = queryAllByLabelText('save color');
     const whiteList = queryAllByLabelText('whitelist toggle');
     const customForm = queryAllByLabelText('custom form');
 
-    await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
     expect(colorButtons[0]).toHaveClass('colorLinks--button active');
     expect(whiteList.length).toEqual(1);
     expect(customForm.length).toEqual(0);
+  });
+
+  it('should show custom input when no active color found', async () => {
+    let utils = {} as RenderResult;
+
+    act(async () => {
+      utils = render(<Popup />);
+    });
+
+    const { getByLabelText, queryAllByLabelText, container } = utils;
+
+    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue('');
+
+    await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
+
+    const customColor = getByLabelText('custom color');
+    const customForm = queryAllByLabelText('custom form');
+
+    expect(customColor).toHaveClass('colorLinks--button active');
+    await waitFor(() => expect(customForm.length).toEqual(1), { container });
   });
 });

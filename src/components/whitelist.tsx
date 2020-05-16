@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import WhitelistClass from '../helpers/Whitelist';
+import { getWhitelist, removeUrlFromWhitelist, addUrlToWhitelist } from '../helpers/whitelist';
 import { getCurrentUrl, reloadCurrentTab } from '../helpers/chrome';
-
-const Whitelist = new WhitelistClass();
 
 const WhitelistManager = () => {
   const [isActive, setIsActive] = useState(false);
@@ -16,7 +14,7 @@ const WhitelistManager = () => {
       let urls = null;
 
       try {
-        urls = await Whitelist.getWhitelist();
+        urls = await getWhitelist();
       } catch (e) {
         console.log(e);
       }
@@ -32,7 +30,7 @@ const WhitelistManager = () => {
 
     async function removeUrl() {
       try {
-        Whitelist.removeUrlFromWhitelist(url);
+        removeUrlFromWhitelist(url);
       } catch (e) {
         console.log(e);
       }
@@ -48,7 +46,7 @@ const WhitelistManager = () => {
 
     async function addUrl() {
       try {
-        Whitelist.addUrlToWhitelist(url);
+        addUrlToWhitelist(url);
       } catch (e) {
         console.log(e);
       }

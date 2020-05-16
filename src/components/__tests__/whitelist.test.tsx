@@ -2,19 +2,12 @@
 import React from 'react';
 import { render, act, RenderResult, waitFor, fireEvent } from '@testing-library/react';
 import * as chromeHelpers from '../../helpers/chrome';
-import {
-  // @ts-ignore
-  getWhitelistMock,
-  // @ts-ignore
-  addUrlToWhitelistMock,
-  // @ts-ignore
-  removeUrlFromWhitelistMock,
-} from '../../helpers/Whitelist';
+import { getWhitelist, addUrlToWhitelist, removeUrlFromWhitelist } from '../../helpers/whitelist';
 
 import WhitelistManager from '../whitelist';
 
 jest.spyOn(chromeHelpers, 'getCurrentUrl');
-jest.mock('../../helpers/Whitelist.ts');
+jest.mock('../../helpers/whitelist.ts');
 
 describe('WhitelistManager', () => {
   afterEach(() => {
@@ -43,7 +36,7 @@ describe('WhitelistManager', () => {
     const url = 'https://www.google.com';
 
     (chromeHelpers.getCurrentUrl as jest.Mock).mockResolvedValueOnce(url);
-    getWhitelistMock.mockResolvedValueOnce([url]);
+    (getWhitelist as jest.Mock).mockResolvedValueOnce([url]);
 
     act(async () => {
       utils = render(<WhitelistManager />);
@@ -70,8 +63,8 @@ describe('WhitelistManager', () => {
 
     fireEvent.click(getByTestId('whitelist-checkbox'));
 
-    await waitFor(() => expect(addUrlToWhitelistMock).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(addUrlToWhitelistMock).toHaveBeenCalledWith(url));
+    await waitFor(() => expect(addUrlToWhitelist).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(addUrlToWhitelist).toHaveBeenCalledWith(url));
   });
 
   it('should remove a url from the whitelist when clicked', async () => {
@@ -80,7 +73,7 @@ describe('WhitelistManager', () => {
 
     (chromeHelpers.getCurrentUrl as jest.Mock).mockResolvedValueOnce(url);
     (chromeHelpers.reloadCurrentTab as jest.Mock) = jest.fn();
-    getWhitelistMock.mockResolvedValueOnce([url]);
+    (getWhitelist as jest.Mock).mockResolvedValueOnce([url]);
 
     act(async () => {
       utils = render(<WhitelistManager />);
@@ -91,7 +84,7 @@ describe('WhitelistManager', () => {
 
     fireEvent.click(getByTestId('whitelist-checkbox'));
 
-    await waitFor(() => expect(removeUrlFromWhitelistMock).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(removeUrlFromWhitelistMock).toHaveBeenCalledWith(url));
+    await waitFor(() => expect(removeUrlFromWhitelist).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(removeUrlFromWhitelist).toHaveBeenCalledWith(url));
   });
 });

@@ -24,8 +24,8 @@ To get started, clone the project and change into the root directory.
 
 ```shell
 nvm use
-yarn
-yarn lint
+yarn install
+yarn test
 ```
 
 ### Running The Project

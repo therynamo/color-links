@@ -6,7 +6,7 @@ import * as chromeHelpers from '../../helpers/chrome';
 import Popup, { colors } from '../popup';
 
 jest.mock('../../helpers/chrome.ts');
-jest.mock('../../helpers/Whitelist.ts');
+jest.mock('../../helpers/whitelist.ts');
 
 describe('Popup', () => {
   afterEach(() => {

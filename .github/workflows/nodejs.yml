@@ -5,19 +5,26 @@ name: Test & Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - run: yarn install
-    - run: yarn build
-    - run: yarn test
+      - uses: actions/checkout@v2
+
+      - name: Build & Test
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: rm -rf .cache
+      - run: yarn install
+      - run: yarn build
+      - run: yarn test
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -4,15 +4,18 @@
   "description": "Help Color Blind Individuals See Visited Links",
   "main": "index.js",
   "scripts": {
-    "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "gulp build:dev && gulp webpack:dev",
-    "dev": "npm run build:dev && gulp clean && gulp watch",
-    "build": "NODE_ENV=production gulp clean && gulp build:prod && webpack -p --config webpack.production.config.js && gulp zip"
+    "lint": "eslint ./src",
+    "test": "jest",
+    "start": "parcel src/color-links.html src/content-scripts/contentscript.ts",
+    "build": "NODE_ENV=production rm -rf dist && parcel build src/color-links.html src/content-scripts/contentscript.ts --public-url ./ --no-cache",
+    "zip": "yarn build && zip -r -X colorlinks.zip dist/*"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/therynamo/color-links.git"
+    "url": "ssh://git@github.com:therynamo/color-links.git"
   },
   "keywords": [
     "color",
@@ -27,32 +30,36 @@
   },
   "homepage": "https://github.com/therynamo/color-links#readme",
   "dependencies": {
-    "babel-core": "^6.3.21",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "chai": "^3.4.1",
     "del": "^2.2.0",
-    "eslint": "^1.10.3",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-clean": "^0.3.1",
-    "gulp-eslint": "^1.1.1",
-    "gulp-mocha": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-zip": "^3.1.0",
-    "mocha": "^2.3.4",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "urijs": "^1.18.12",
-    "webpack": "^1.12.9",
-    "webpack-stream": "^3.1.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "urijs": "^1.18.12"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^2.1.1",
-    "eslint-plugin-react": "^3.13.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-sourcemaps": "^1.6.0"
+    "@types/chrome": "^0.0.107",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@testing-library/jest-dom": "^5.7.0",
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.1",
+    "@types/urijs": "^1.19.8",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.32.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-typescript": "^7.2.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "jest": "^26.0.1",
+    "jest-webextension-mock": "^3.5.4",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.3.1",
+    "typescript": "^3.8.3"
   }
 }

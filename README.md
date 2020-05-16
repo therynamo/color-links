@@ -1,7 +1,8 @@
 [We're On The Chrome Store!](https://chrome.google.com/webstore/detail/color-links/hiponeioelghhaljfflaaflpccedbdem)
 
-![ ](https://travis-ci.org/therynamo/color-links.svg?branch=master) [![Code Climate](https://codeclimate.com/github/therynamo/color-links/badges/gpa.svg)](https://codeclimate.com/github/therynamo/color-links) Color Links <img src="./public/images/links128.png" width="24px" height="24px" />
-===
+![Tests & Build](https://github.com/therynamo/color-links/workflows/Test%20&%20Build/badge.svg)
+
+[![Coverage Status](https://coveralls.io/repos/github/therynamo/color-links/badge.svg?branch=master)](https://coveralls.io/github/therynamo/color-links?branch=master)
 
 ### Initial Problem
 
@@ -15,8 +16,7 @@ Color Links aims to make it a bit easier to search around the web, for the color
 When enabled this chrome extension allows you to browse any website with full awareness of which links
 you've clicked.
 
-Development
-===
+# Development
 
 To get started, clone the project and change into the root directory.
 
@@ -24,37 +24,36 @@ To get started, clone the project and change into the root directory.
 
 ```shell
 nvm use
-yarn
-yarn lint
+yarn install
+yarn test
 ```
 
 ### Running The Project
 
 #### Dev Mode
 
-For development, you'll want to run a few commands to get going.
 ```shell
-gulp build:dev   # build content scripts
-gulp webpack:dev # build popup components
-yarn dev      # watch files and build above two commands every change
+yarn start
+# Server running at http://localhost:1234
+# visit http://localhost:1234/color-links.html
+
+# or
+yarn build
 ```
 
-Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the entire folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
+Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the `dist` folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
 
 #### Prod
+
 ```shell
-yarn build # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
+yarn zip # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
 ```
 
-**note**: if you'd like to test your prod build, you should add the dist folder of the project, not the entire working directory, when doing a `Load unpacked extension...`. 
-
-Contributing
-===
+# Contributing
 
 If you'd like to contribute to this repository, feel free, just fork the project and make a pull request.
 
-License
-===
+# License
 
 The MIT License (MIT)
 Copyright (c) <year> <copyright holders>

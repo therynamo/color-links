@@ -30,13 +30,13 @@
   },
   "homepage": "https://github.com/therynamo/color-links#readme",
   "dependencies": {
-    "@types/chrome": "^0.0.107",
     "del": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "urijs": "^1.18.12"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.107",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",

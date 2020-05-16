@@ -34,19 +34,20 @@ yarn test
 
 ```shell
 yarn start
+# Server running at http://localhost:1234
+# visit http://localhost:1234/color-links.html
+
 # or
 yarn build
 ```
 
-Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the entire folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
+Adding the extension to chrome is as easy as visiting `chrome://extensions`, verifying that you are in `developer mode` and then clicking `Load unpacked extension...`. Once you've done this, navigate to the root directory of the project and select the `dist` folder. This will generate the extension for you, and you should see the color-links logo up in your toolbar.
 
 #### Prod
 
 ```shell
-yarn build # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
+yarn zip # builds the extension in its entirety and creates a dist folder along with colorlinks.zip
 ```
-
-**note**: if you'd like to test your prod build, you should add the dist folder of the project, not the entire working directory, when doing a `Load unpacked extension...`.
 
 # Contributing
 

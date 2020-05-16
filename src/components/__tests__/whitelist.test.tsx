@@ -2,12 +2,16 @@
 import React from 'react';
 import { render, act, RenderResult, waitFor, fireEvent } from '@testing-library/react';
 import * as chromeHelpers from '../../helpers/chrome';
-import { getWhitelist, addUrlToWhitelist, removeUrlFromWhitelist } from '../../helpers/whitelist';
+import {
+  getWhitelist,
+  addUrlToWhitelist,
+  removeUrlFromWhitelist,
+} from '../../helpers/whitelisting';
 
 import WhitelistManager from '../whitelist';
 
 jest.spyOn(chromeHelpers, 'getCurrentUrl');
-jest.mock('../../helpers/whitelist.ts');
+jest.mock('../../helpers/whitelisting.ts');
 
 describe('WhitelistManager', () => {
   afterEach(() => {

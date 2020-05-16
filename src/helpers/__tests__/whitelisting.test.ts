@@ -3,7 +3,7 @@ import {
   setWhitelist,
   addUrlToWhitelist,
   removeUrlFromWhitelist,
-} from '../whitelist';
+} from '../whitelisting';
 
 describe('whitelist helpers', () => {
   afterEach(() => {

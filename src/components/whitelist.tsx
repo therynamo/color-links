@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getWhitelist, removeUrlFromWhitelist, addUrlToWhitelist } from '../helpers/whitelist';
+import { getWhitelist, removeUrlFromWhitelist, addUrlToWhitelist } from '../helpers/whitelisting';
 import { getCurrentUrl, reloadCurrentTab } from '../helpers/chrome';
 
 const WhitelistManager = () => {

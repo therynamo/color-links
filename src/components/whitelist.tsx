@@ -10,7 +10,8 @@ const WhitelistManager = () => {
 
   useEffect(() => {
     async function initializeWhitelist() {
-      setUrl(await getCurrentUrl());
+      const currentUrl = await getCurrentUrl();
+      setUrl(currentUrl);
 
       let urls = null;
 
@@ -20,7 +21,7 @@ const WhitelistManager = () => {
         console.log(e);
       }
 
-      setIsActive(urls.some((u) => u === url));
+      setIsActive(urls.some((u) => u === currentUrl));
     }
 
     initializeWhitelist();
@@ -40,10 +41,9 @@ const WhitelistManager = () => {
     }
 
     removeUrl();
-  }, []);
+  }, [url]);
 
-  const handleOnClick = useCallback((e) => {
-    e.preventDefault();
+  const handleOnClick = useCallback(() => {
     setIsActive((prevState) => !prevState);
 
     async function addUrl() {
@@ -57,19 +57,20 @@ const WhitelistManager = () => {
     }
 
     addUrl();
-  }, []);
+  }, [url]);
 
   return (
     <div className="whitelist--wrapper">
       <span className="whitelist--text">{url}</span>
-      <label aria-label="whitelist toggle" className="whitelist--toggle-label" htmlFor="cb4" />
       <input
+        data-testid="whitelist-checkbox"
         onChange={isActive ? handleOnRemove : handleOnClick}
         className="toggle whitelist--toggle"
         id="cb4"
         type="checkbox"
         checked={isActive}
       />
+      <label aria-label="whitelist toggle" className="whitelist--toggle-label" htmlFor="cb4" />
     </div>
   );
 };

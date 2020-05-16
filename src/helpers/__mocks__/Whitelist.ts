@@ -1,19 +1,15 @@
 /* eslint-disable class-methods-use-this */
-export default class {
-  getWhitelist() {
-    return [];
-  }
 
-  // @ts-ignore
-  setWhitelist() {
-    return jest.fn();
-  }
+export const getWhitelistMock = jest.fn(() => []);
+export const setWhitelistMock = jest.fn();
+export const addUrlToWhitelistMock = jest.fn();
+export const removeUrlFromWhitelistMock = jest.fn();
 
-  addUrlToWhitelist() {
-    return jest.fn();
-  }
+const mock = jest.fn().mockImplementation(() => ({
+  getWhitelist: getWhitelistMock,
+  setWhitelist: setWhitelistMock,
+  addUrlToWhitelist: addUrlToWhitelistMock,
+  removeUrlFromWhitelist: removeUrlFromWhitelistMock,
+}));
 
-  removeUrlFromWhitelist() {
-    return jest.fn();
-  }
-}
+export default mock;

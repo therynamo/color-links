@@ -1,8 +1,7 @@
 const displayStyles = function displayStyles(location) {
   return new Promise((resolve) => {
     chrome.storage.sync.get("whitelist", (result) => {
-      const arr =
-        result.whitelist && result.whitelist.length ? result.whitelist : [];
+      const arr = result.whitelist && result.whitelist.length ? result.whitelist : [];
       const { origin } = location;
       const isWhitelisted = arr.filter((url) => url === origin);
 
@@ -19,8 +18,8 @@ const initializeStylesheet = function initializeStylesheet() {
   chrome.storage.sync.get("color", (results) => {
     if (results.color) {
       styleElement.sheet.insertRule(
-        "a:visited {color: " + results.color + ";}",
-        0
+        `a:visited {color: "${results.color}";}`,
+        0,
       );
       return;
     }
@@ -40,14 +39,14 @@ const setStyleSheet = function setStyleSheet(color) {
 
   if (styleSheet) {
     styleSheet.deleteRule(0);
-    styleSheet.insertRule("a:visited { color:" + color + "}", 0);
+    styleSheet.insertRule(`a:visited { color:"${color}"}`, 0);
     chrome.storage.sync.set({ color }, () => {});
   }
 };
 
-const colorListener = function colorListener(request, sender, sendResponse) {
+const colorListener = function colorListener(request) {
   // eslint-disable-line no-unused-vars
-  const color = request.color;
+  const { color } = request;
 
   if (color) {
     setStyleSheet(color);
@@ -61,4 +60,5 @@ displayStyles(window.location)
     initializeStylesheet();
     chrome.runtime.onMessage.addListener(colorListener);
   })
+  /* eslint-disable-next-line no-console */
   .catch((err) => console.log(err));

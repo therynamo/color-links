@@ -1,6 +1,12 @@
 /* eslint-disable import/named */
 import React from 'react';
-import { render, act, RenderResult, waitFor, fireEvent } from '@testing-library/react';
+import {
+  render,
+  act,
+  RenderResult,
+  waitFor,
+  fireEvent,
+} from '@testing-library/react';
 import * as chromeHelpers from '../../helpers/chrome';
 import {
   getWhitelist,

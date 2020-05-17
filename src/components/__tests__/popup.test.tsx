@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, RenderResult, waitFor, fireEvent } from '@testing-library/react';
+import {
+  render,
+  RenderResult,
+  waitFor,
+  fireEvent
+} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 import * as chromeHelpers from '../../helpers/chrome';

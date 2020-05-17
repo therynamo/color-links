@@ -1,4 +1,9 @@
-import { getActiveColor, getCurrentUrl, saveActiveColor, reloadCurrentTab } from '../chrome';
+import {
+  getActiveColor,
+  getCurrentUrl,
+  saveActiveColor,
+  reloadCurrentTab,
+} from '../chrome';
 
 describe('chrome helpers >', () => {
   afterEach(() => {
@@ -44,7 +49,7 @@ describe('chrome helpers >', () => {
     expect(chrome.tabs.sendMessage).toHaveBeenCalledWith(
       undefined,
       { color },
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 

@@ -24,6 +24,7 @@ const Popup = () => {
       try {
         result = await getActiveColor();
       } catch (e) {
+        /* eslint-disable-next-line no-console */
         console.log('Did Not Receive Color');
       }
 

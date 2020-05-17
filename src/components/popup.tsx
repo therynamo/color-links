@@ -6,8 +6,6 @@ import CustomInput from './customInput';
 import { getActiveColor, saveActiveColor } from '../helpers/chrome';
 import { COLORS } from '../constants/colors';
 
-// export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
-
 const Popup = () => {
   const [activeColor, setActiveColor] = useState('');
   const [showCustomInput, setShowCustomInput] = useState(false);
@@ -29,19 +27,7 @@ const Popup = () => {
       }
 
       setActiveColor(result);
-<<<<<<< Updated upstream
       setShowCustomInput(!COLORS.includes(result));
-=======
-      console.log('RESULTz',result);
-
-      const root = document.documentElement;
-      
-      root.style.setProperty('--current-color', result);
-      console.log('ROOt', root.style);
-      console.log('active', activeColor);
-
-      if (!colors.includes(activeColor)) setShowCustomInput(true);
->>>>>>> Stashed changes
     }
 
     getActiveColorEffect();

@@ -4,8 +4,9 @@ import WhitelistManager from './whitelist';
 import ColorButton from './colorButton';
 import CustomInput from './customInput';
 import { getActiveColor, saveActiveColor } from '../helpers/chrome';
+import { COLORS } from '../constants/colors';
 
-export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
+// export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
 
 const Popup = () => {
   const [activeColor, setActiveColor] = useState('');
@@ -28,7 +29,7 @@ const Popup = () => {
       }
 
       setActiveColor(result);
-      setShowCustomInput(!colors.includes(result));
+      setShowCustomInput(!COLORS.includes(result));
     }
 
     getActiveColorEffect();
@@ -36,17 +37,17 @@ const Popup = () => {
 
   return (
     <div className="colorLinks">
+      <h1>color links</h1>
       <span
         style={{
           color: activeColor,
-          paddingBottom: '5px',
-          transition: 'color .5s',
         }}
+        className="colorLinks--demo"
       >
         A Quick Brown Fox Jumped
       </span>
       <div className="colorLinks--grid">
-        {colors.map((color) => (
+        {COLORS.map((color) => (
           <ColorButton
             color={color}
             clickHandler={() => onColorChange(color)}
@@ -59,7 +60,7 @@ const Popup = () => {
           <button
             type="button"
             aria-label="custom color"
-            className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
+            className={`colorLinks--button${!COLORS.includes(activeColor) ? ' active' : ''}`}
             onClick={() => setShowCustomInput(true)}
           >
             #

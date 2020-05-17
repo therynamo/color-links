@@ -1,34 +1,48 @@
+
+/* variables
+_________________________________________________________*/
+:root {
+  --current-color: #000000;
+}
+
+/* global
+_________________________________________________________*/
 body {
-  color: #000000;
+  color: var(--current-color);
   font-family: helvetica, sans-serif;
   font-weight: 200;
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
   margin: 0;
 }
 
-
-
-/* Buttons
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* components
+_________________________________________________________*/
 .colorLinks {
   padding: 1em;
   transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
-  width: 200px;
+  width: 20em;
+}
+
+.colorLinks--demo {
+  color: var(--curent-color);
+  padding-bottom: 0.5em;
+  transition: color .5s;
+  font-weight: bold;
 }
 
 .colorLinks--grid {
   background: white;
-  padding: 10px 0;
+  padding: 1em 0;
   position: relative;
 }
 
 .colorLinks--button {
   border-radius: 50%;
-  height: 2em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
   padding: 0;
   font-family: Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 1em;
   border: none;
   box-shadow: none;
   cursor: pointer;
@@ -38,7 +52,6 @@ body {
 
 .colorLinks--button.active,
 .colorLinks--button:focus {
-  /*border-radius: 33%;*/
   outline: none;
   box-shadow: 0 0 0 2px #000;
   border: 2px solid #fff;

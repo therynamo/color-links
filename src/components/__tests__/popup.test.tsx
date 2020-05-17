@@ -3,7 +3,8 @@ import { render, RenderResult, waitFor, fireEvent } from '@testing-library/react
 import { act } from 'react-dom/test-utils';
 
 import * as chromeHelpers from '../../helpers/chrome';
-import Popup, { colors } from '../popup';
+import { COLORS } from '../../constants/colors';
+import Popup from '../popup';
 
 jest.mock('../../helpers/chrome.ts');
 jest.mock('../../helpers/whitelisting.ts');
@@ -22,7 +23,7 @@ describe('Popup', () => {
 
     const { queryAllByLabelText } = utils;
 
-    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(colors[0]);
+    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 
     await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
 
@@ -63,7 +64,7 @@ describe('Popup', () => {
     });
 
     const { queryAllByLabelText, queryByLabelText } = utils;
-    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(colors[0]);
+    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 
     await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
 
@@ -87,7 +88,7 @@ describe('Popup', () => {
     });
 
     const { queryAllByLabelText } = utils;
-    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(colors[0]);
+    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 
     await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
 

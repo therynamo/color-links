@@ -29,7 +29,19 @@ const Popup = () => {
       }
 
       setActiveColor(result);
+<<<<<<< Updated upstream
       setShowCustomInput(!COLORS.includes(result));
+=======
+      console.log('RESULTz',result);
+
+      const root = document.documentElement;
+      
+      root.style.setProperty('--current-color', result);
+      console.log('ROOt', root.style);
+      console.log('active', activeColor);
+
+      if (!colors.includes(activeColor)) setShowCustomInput(true);
+>>>>>>> Stashed changes
     }
 
     getActiveColorEffect();

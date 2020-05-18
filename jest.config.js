@@ -5,6 +5,7 @@ module.exports = {
   coveragePathIgnorePatterns: ['<rootDir>/src/popup.tsx'],
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
+    '!**/content-scripts/contentscript.ts',
     '!**/node_modules/**',
     '!**/jest/**',
     '!**/dist/**',

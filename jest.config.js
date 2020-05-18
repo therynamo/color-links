@@ -8,7 +8,6 @@ module.exports = {
     '!**/node_modules/**',
     '!**/jest/**',
     '!**/dist/**',
-    '!**/content-scripts/**',
     '!**/static/**',
   ],
 };

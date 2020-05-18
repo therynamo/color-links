@@ -13,6 +13,7 @@ module.exports = {
     'plugin:jest/recommended',
   ],
   rules: {
+    'no-console': 'off',
     'comma-dangle': 'off',
     'implicit-arrow-linebreak': 'off',
     'jsx-a11y/label-has-associated-control': 'off',

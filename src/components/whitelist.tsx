@@ -16,7 +16,6 @@ const WhitelistManager = () => {
       try {
         urls = await getWhitelist();
       } catch (e) {
-        /* eslint-disable-next-line no-console */
         console.log(e);
       }
 
@@ -33,7 +32,6 @@ const WhitelistManager = () => {
       try {
         removeUrlFromWhitelist(url);
       } catch (e) {
-        /* eslint-disable-next-line no-console */
         console.log(e);
       }
 
@@ -50,7 +48,6 @@ const WhitelistManager = () => {
       try {
         addUrlToWhitelist(url);
       } catch (e) {
-        /* eslint-disable-next-line no-console */
         console.log(e);
       }
 

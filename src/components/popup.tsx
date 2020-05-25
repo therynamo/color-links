@@ -62,7 +62,6 @@ const Popup = () => {
         </summary>
         <CustomInput color={activeColor} saveHandler={onColorChange} />
       </details>
-
       <WhitelistManager />
     </div>
   );

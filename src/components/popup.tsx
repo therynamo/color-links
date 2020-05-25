@@ -13,8 +13,11 @@ const Popup = () => {
   const onColorChange = useCallback((color) => {
     saveActiveColor(color);
     setActiveColor(color);
-    setShowCustomInput(false);
   }, []);
+
+  const toggleDetails = useCallback(() => {
+    setShowCustomInput(!showCustomInput)
+  },[]);
 
   useEffect(() => {
     async function getActiveColorEffect() {
@@ -27,7 +30,6 @@ const Popup = () => {
       }
 
       setActiveColor(result);
-      setShowCustomInput(!COLORS.includes(result));
     }
 
     getActiveColorEffect();
@@ -35,15 +37,14 @@ const Popup = () => {
 
   return (
     <div className="colorLinks">
-      <h1>color links</h1>
-      <span
+      <h1
         style={{
           color: activeColor,
-        }}
-        className="colorLinks--demo"
+      }}
       >
-        A Quick Brown Fox Jumped
-      </span>
+        <img aria-hidden="true" src="../links48.png" />
+        <span>color links</span>
+      </h1>
       <div className="colorLinks--grid">
         {COLORS.map((color) => (
           <ColorButton
@@ -53,20 +54,15 @@ const Popup = () => {
             active={color === activeColor}
           />
         ))}
-
-        <div>
-          <button
-            type="button"
-            aria-label="custom color"
-            className={`colorLinks--button${!COLORS.includes(activeColor) ? ' active' : ''}`}
-            onClick={() => setShowCustomInput(true)}
-          >
-            #
-          </button>
-        </div>
       </div>
 
-      {showCustomInput && <CustomInput color={activeColor} saveHandler={onColorChange} />}
+      <details>
+        <summary>
+          custom color
+        </summary>
+        <CustomInput color={activeColor} saveHandler={onColorChange} />
+      </details>
+
       <WhitelistManager />
     </div>
   );

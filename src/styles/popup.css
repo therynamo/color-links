@@ -2,7 +2,8 @@
 /* variables
 _________________________________________________________*/
 :root {
-  --current-color: #000000;
+  --current-color: #333333;
+
 }
 
 /* global
@@ -15,19 +16,34 @@ body {
   margin: 0;
 }
 
+h1 {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: normal;
+  color: var(--curent-color);
+  transition: color .5s;
+}
+
+h1 > img {
+  height: 1.5em;
+}
+
+h1 > span {
+  padding-left: 0.5em;
+}
+
+summary {
+  outline: 0;
+}
+
 /* components
 _________________________________________________________*/
 .colorLinks {
   padding: 1em;
   transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
   width: 20em;
-}
-
-.colorLinks--demo {
-  color: var(--curent-color);
-  padding-bottom: 0.5em;
-  transition: color .5s;
-  font-weight: bold;
 }
 
 .colorLinks--grid {
@@ -69,14 +85,20 @@ _________________________________________________________*/
 
 /* custom input
 _________________________________________________________*/
-.colorLinks--custom {
-  display: flex;
-  padding-bottom: 10px;
+.customForm {
+  padding: 1em 1em 1em 0;
 }
 
-.colorLinks--custom > * {
-  flex: 1 1 50%;
-  text-align: center;
+.customForm--label {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.customForm--clickables {
+  padding-bottom: 0.75em;
+}
+
+.customForm--button {
   border: 1px solid darkgray;
   border-radius: 3px;
 }

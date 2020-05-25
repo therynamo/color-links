@@ -10,17 +10,18 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
 
   return (
     <form
-      aria-label="custom form"
-      className="colorLinks--custom"
+      className="customForm"
       onSubmit={() => saveHandler(currentColor)}
     >
-      <input
-        placeholder="#ff0000"
-        aria-label="custom input"
-        value={currentColor}
-        onChange={(e) => setColor(e.target.value)}
-      />
-      <button type="submit">Save</button>
+      <label className="customForm--label">enter hexadecimal value</label>
+      <div className="customForm--clickables">
+        <input
+          aria-label="custom input"
+          value={currentColor}
+          onChange={(e) => setColor(e.target.value)}
+        />
+        <button type="submit">save</button>
+      </div>
     </form>
   );
 };

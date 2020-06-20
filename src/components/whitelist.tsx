@@ -59,7 +59,6 @@ const WhitelistManager = () => {
 
   return (
     <div className="whitelist--wrapper">
-      <span className="whitelist--text">{url}</span>
       <input
         data-testid="whitelist-checkbox"
         onChange={isActive ? handleOnRemove : handleOnClick}

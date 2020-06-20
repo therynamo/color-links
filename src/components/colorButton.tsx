@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 interface OwnProps {
   color: string;
   clickHandler: () => void;
-  active: boolean;
+  active?: boolean;
 }
 
 const ColorButton: FC<OwnProps> = ({ color, clickHandler, active }) => (

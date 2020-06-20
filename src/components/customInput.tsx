@@ -19,8 +19,9 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
           aria-label="custom input"
           value={currentColor}
           onChange={(e) => setColor(e.target.value)}
-        />
+        />{' '}
         <button type="submit">save</button>
+        <p>current color: <b style={{ color }}>{color}</b></p>
       </div>
     </form>
   );

@@ -37,6 +37,7 @@ h1 > span {
 
 summary {
   outline: 0;
+  margin-bottom: 0.5em;
 }
 
 /* components
@@ -60,6 +61,7 @@ _________________________________________________________*/
   padding: 0;
   font-family: Helvetica, sans-serif;
   font-size: 1em;
+  color: white;
   border: none;
   box-shadow: none;
   cursor: pointer;

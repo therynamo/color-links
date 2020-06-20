@@ -4,6 +4,7 @@ import {
   RenderResult,
   waitFor,
   fireEvent,
+  getAllByTestId,
 } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
@@ -26,63 +27,17 @@ describe('Popup', () => {
       utils = render(<Popup />);
     });
 
-    const { queryAllByLabelText } = utils;
+    const { queryAllByLabelText, getByTestId, getAllByTestId } = utils;
 
     (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 
     await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
 
-    const colorButtons = queryAllByLabelText('save color');
+    const colorButtons = getAllByTestId('color button');
     const whiteList = queryAllByLabelText('whitelist toggle');
-    const customForm = queryAllByLabelText('custom form');
 
     expect(colorButtons[0]).toHaveClass('colorLinks--button active');
     expect(whiteList.length).toEqual(1);
-    expect(customForm.length).toEqual(0);
-  });
-
-  it('should show custom input when no active color found', async () => {
-    let utils = {} as RenderResult;
-
-    act(async () => {
-      utils = render(<Popup />);
-    });
-
-    const { getByLabelText, queryAllByLabelText, container } = utils;
-
-    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue('');
-
-    await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
-
-    const customColor = getByLabelText('custom color');
-    const customForm = queryAllByLabelText('custom form');
-
-    expect(customColor).toHaveClass('colorLinks--button active');
-    await waitFor(() => expect(customForm.length).toEqual(1), { container });
-  });
-
-  it('should show a custom input when the custom color button is clicked', async () => {
-    let utils = {} as RenderResult;
-
-    act(async () => {
-      utils = render(<Popup />);
-    });
-
-    const { queryAllByLabelText, queryByLabelText } = utils;
-    (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
-
-    await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
-
-    const colorButtons = queryAllByLabelText('save color');
-    const customColorButton = queryByLabelText('custom color');
-    const customForm = queryAllByLabelText('custom form');
-
-    expect(colorButtons[0]).toHaveClass('colorLinks--button active');
-    expect(customForm.length).toEqual(0);
-
-    fireEvent.click(customColorButton);
-
-    waitFor(() => expect(customForm.length).toEqual(1));
   });
 
   it('should save a color when a color button is clicked', async () => {
@@ -92,12 +47,12 @@ describe('Popup', () => {
       utils = render(<Popup />);
     });
 
-    const { queryAllByLabelText } = utils;
+    const { queryAllByLabelText, getAllByTestId } = utils;
     (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 
     await waitFor(() => expect(chromeHelpers.getActiveColor).toHaveBeenCalled());
 
-    const colorButtons = queryAllByLabelText('save color');
+    const colorButtons = getAllByTestId('color button');
     const customForm = queryAllByLabelText('custom form');
 
     expect(colorButtons[0]).toHaveClass('colorLinks--button active');

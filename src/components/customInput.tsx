@@ -17,13 +17,13 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
       <label className="customForm--label" htmlFor="custominput">enter hexadecimal value</label>
       <div className="customForm--clickables">
         <input
-          aria-label="custom input"
+          data-testid="custom input"
           id="custominput"
           onChange={(e) => setCurrentColor(e.target.value)}
           value={currentColor}
         />
         {' '}
-        <button type="submit">save</button>
+        <button data-testid="save button" type="submit">save</button>
         <p>
           current color:
           <b style={{ color }}>{color}</b>

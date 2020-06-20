@@ -8,16 +8,11 @@ import { COLORS } from '../constants/colors';
 
 const Popup = () => {
   const [activeColor, setActiveColor] = useState('');
-  const [showCustomInput, setShowCustomInput] = useState(false);
 
   const onColorChange = useCallback((color) => {
     saveActiveColor(color);
     setActiveColor(color);
   }, []);
-
-  const toggleDetails = useCallback(() => {
-    setShowCustomInput(!showCustomInput)
-  },[]);
 
   useEffect(() => {
     async function getActiveColorEffect() {
@@ -42,7 +37,7 @@ const Popup = () => {
           color: activeColor,
       }}
       >
-        <img aria-hidden="true" src="../links48.png" />
+        <img aria-hidden="true" src="../links48.png" alt="" />
         <span>color links</span>
       </h1>
       <div className="colorLinks--grid">

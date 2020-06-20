@@ -13,7 +13,7 @@ const ColorButton: FC<OwnProps> = ({ color, clickHandler, active }) => (
       type="button"
       className={`colorLinks--button${active ? ' active' : ''}`}
       onClick={clickHandler}
-      style={{ color: 'white', background: color }}
+      style={{ background: color }}
     />
   </div>
 );

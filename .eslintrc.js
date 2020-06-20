@@ -13,12 +13,13 @@ module.exports = {
     'plugin:jest/recommended',
   ],
   rules: {
-    'no-console': 'off',
     'comma-dangle': 'off',
     'implicit-arrow-linebreak': 'off',
+    'import/prefer-default-export': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
-    'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'no-console': 'off',
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react/prop-types': 'off',
   },
 };

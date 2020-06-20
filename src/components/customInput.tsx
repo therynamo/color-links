@@ -12,6 +12,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
     <form
       className="customForm"
       onSubmit={() => saveHandler(currentColor)}
+      data-testid="form"
     >
       <label className="customForm--label">enter hexadecimal value</label>
       <div className="customForm--clickables">

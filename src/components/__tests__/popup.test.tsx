@@ -26,7 +26,7 @@ describe('Popup', () => {
       utils = render(<Popup />);
     });
 
-    const { queryAllByLabelText, getByTestId, getAllByTestId } = utils;
+    const { queryAllByLabelText, getAllByTestId } = utils;
 
     (chromeHelpers.getActiveColor as jest.Mock).mockResolvedValue(COLORS[0]);
 

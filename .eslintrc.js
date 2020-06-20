@@ -16,6 +16,7 @@ module.exports = {
     'comma-dangle': 'off',
     'implicit-arrow-linebreak': 'off',
     'import/prefer-default-export': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'no-console': 'off',
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies

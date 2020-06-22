@@ -30,15 +30,17 @@ const Popup = () => {
     getActiveColorEffect();
   }, []);
 
+  const currentColor = {'--current-color': activeColor}  as React.CSSProperties;
+
   return (
-    <div className="colorLinks">
+    <div className="colorLinks currentColor" style={currentColor}>
       <h1
         style={{
           color: activeColor,
       }}
       >
         <img aria-hidden="true" src="../links48.png" alt="" />
-        <span>color links</span>
+        <span>color links!</span>
       </h1>
       <div className="colorLinks--grid">
         {COLORS.map((color) => (

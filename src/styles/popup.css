@@ -2,9 +2,11 @@
 /* variables
 _________________________________________________________*/
 :root {
-  --current-color: #333333;
+  --gray-dark: #333333;
+  --gray-medium: #666666;
+  --current-color: var(--gray-dark);
   --extension-is-on: green;
-  --extension-is-off: #777777;
+  --extension-is-off: var(--gray-medium);
 }
 
 /* global
@@ -40,6 +42,10 @@ summary {
   margin-bottom: 0.5em;
 }
 
+.currentColor {
+  color: var(--current-color);
+}
+
 /* components
 _________________________________________________________*/
 .colorLinks {
@@ -72,7 +78,7 @@ _________________________________________________________*/
 .colorLinks--button.active,
 .colorLinks--button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #000;
+  box-shadow: 0 0 0 2px var(--gray-medium);
   border: 2px solid #fff;
   opacity: 1;
 }
@@ -102,7 +108,7 @@ _________________________________________________________*/
 }
 
 .customForm--button {
-  border: 1px solid darkgray;
+  border: 1px solid var(--gray-dark);
   border-radius: 3px;
 }
 /* whitelist

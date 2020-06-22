@@ -10,7 +10,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
 
   return (
     <form
-      className="customForm"
+      className="customForm currentColor"
       data-testid="form"
       onSubmit={() => saveHandler(currentColor)}
     >
@@ -26,7 +26,7 @@ const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
         <button data-testid="save button" type="submit">save</button>
         <p>
           current color:
-          <b style={{ color }}>{color}</b>
+          <b className="currentColor">{color}</b>
         </p>
       </div>
     </form>

@@ -40,7 +40,7 @@ const Popup = () => {
       }}
       >
         <img aria-hidden="true" src="../links48.png" alt="" />
-        <span>color links!</span>
+        <span>color links</span>
       </h1>
       <div className="colorLinks--grid">
         {COLORS.map((color) => (

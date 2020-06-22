@@ -30,7 +30,7 @@ const Popup = () => {
     getActiveColorEffect();
   }, []);
 
-  const currentColor = {'--current-color': activeColor} as React.CSSProperties;
+  const currentColor = { '--current-color': activeColor } as React.CSSProperties;
 
   return (
     <div className="colorLinks currentColor" style={currentColor}>

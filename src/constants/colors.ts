@@ -1,4 +1,3 @@
-
 enum COLOR_TYPES {
   shamrock = '#37d67a',
   cyan = '#2ccce4',

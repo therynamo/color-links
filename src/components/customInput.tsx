@@ -6,21 +6,29 @@ interface OwnProps {
 }
 
 const CustomInput: FC<OwnProps> = ({ color, saveHandler }) => {
-  const [currentColor, setColor] = useState(color);
+  const [currentColor, setCurrentColor] = useState(color);
 
   return (
     <form
-      aria-label="custom form"
-      className="colorLinks--custom"
+      className="customForm currentColor"
+      data-testid="form"
       onSubmit={() => saveHandler(currentColor)}
     >
-      <input
-        placeholder="#ff0000"
-        aria-label="custom input"
-        value={currentColor}
-        onChange={(e) => setColor(e.target.value)}
-      />
-      <button type="submit">Save</button>
+      <label className="customForm--label" htmlFor="custominput">enter hexadecimal value</label>
+      <div className="customForm--clickables">
+        <input
+          data-testid="custom input"
+          id="custominput"
+          onChange={(e) => setCurrentColor(e.target.value)}
+          value={currentColor}
+        />
+        {' '}
+        <button data-testid="save button" type="submit">save</button>
+        <p>
+          current color:
+          <b className="currentColor">{color}</b>
+        </p>
+      </div>
     </form>
   );
 };

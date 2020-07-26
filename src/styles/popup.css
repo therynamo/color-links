@@ -1,34 +1,73 @@
+
+/* variables
+_________________________________________________________*/
+:root {
+  --gray-dark: #333333;
+  --gray-medium: #666666;
+  --current-color: var(--gray-dark);
+  --extension-is-on: green;
+  --extension-is-off: var(--gray-medium);
+}
+
+/* global
+_________________________________________________________*/
 body {
-  color: #000000;
+  color: var(--current-color);
   font-family: helvetica, sans-serif;
   font-weight: 200;
   font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
   margin: 0;
 }
 
+h1 {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: normal;
+  color: var(--curent-color);
+  transition: color .5s;
+}
 
+h1 > img {
+  height: 1.5em;
+}
 
-/* Buttons
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1 > span {
+  padding-left: 0.5em;
+}
+
+summary {
+  outline: 0;
+  margin-bottom: 0.5em;
+}
+
+.currentColor {
+  color: var(--current-color);
+}
+
+/* components
+_________________________________________________________*/
 .colorLinks {
   padding: 1em;
   transition: border 250ms ease-in-out, box-shadow 250ms ease-in-out, border-radius 250ms ease-in-out, opacity 250ms ease-in-out;
-  width: 200px;
+  width: 20em;
 }
 
 .colorLinks--grid {
   background: white;
-  padding: 10px 0;
+  padding: 1em 0;
   position: relative;
 }
 
 .colorLinks--button {
   border-radius: 50%;
-  height: 2em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
   padding: 0;
   font-family: Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 1em;
+  color: white;
   border: none;
   box-shadow: none;
   cursor: pointer;
@@ -38,9 +77,8 @@ body {
 
 .colorLinks--button.active,
 .colorLinks--button:focus {
-  /*border-radius: 33%;*/
   outline: none;
-  box-shadow: 0 0 0 2px #000;
+  box-shadow: 0 0 0 2px var(--gray-medium);
   border: 2px solid #fff;
   opacity: 1;
 }
@@ -56,15 +94,21 @@ body {
 
 /* custom input
 _________________________________________________________*/
-.colorLinks--custom {
-  display: flex;
-  padding-bottom: 10px;
+.customForm {
+  padding: 0.5em 1em 0.5em 0;
 }
 
-.colorLinks--custom > * {
-  flex: 1 1 50%;
-  text-align: center;
-  border: 1px solid darkgray;
+.customForm--label {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.customForm--clickables {
+  padding: 0.25em 0;
+}
+
+.customForm--button {
+  border: 1px solid var(--gray-dark);
   border-radius: 3px;
 }
 /* whitelist
@@ -95,9 +139,6 @@ _________________________________________________________*/
   height: 2em;
   position: relative;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -126,22 +167,22 @@ _________________________________________________________*/
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
   background: #fff;
-  border: 4px solid #ED6347;
+  border: 4px solid var(--extension-is-off);
   border-radius: 2em;
 }
 .whitelist--toggle + .whitelist--toggle-label:after {
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
-  background: #ED6347;
+  background: var(--extension-is-off);
   content: "";
   border-radius: 1em;
 }
 .whitelist--toggle:checked + .whitelist--toggle-label {
-  border: 4px solid #47C1BF;
+  border: 4px solid var(--extension-is-on);
 }
 .whitelist--toggle:checked + .whitelist--toggle-label:after {
   left: 50%;
-  background: #47C1BF;
+  background: var(--extension-is-on);
 }
 
 .whitelist-isActive{
@@ -154,7 +195,7 @@ _________________________________________________________*/
   justify-content: center;
   align-items: center;
 
-  font-size: 12px;
+  font-size: 0.75em;
 
   margin-bottom: 8px;
   background: #F2F4F7;

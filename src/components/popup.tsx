@@ -4,17 +4,14 @@ import WhitelistManager from './whitelist';
 import ColorButton from './colorButton';
 import CustomInput from './customInput';
 import { getActiveColor, saveActiveColor } from '../helpers/chrome';
-
-export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
+import { COLORS } from '../constants/colors';
 
 const Popup = () => {
   const [activeColor, setActiveColor] = useState('');
-  const [showCustomInput, setShowCustomInput] = useState(false);
 
   const onColorChange = useCallback((color) => {
     saveActiveColor(color);
     setActiveColor(color);
-    setShowCustomInput(false);
   }, []);
 
   useEffect(() => {
@@ -28,25 +25,25 @@ const Popup = () => {
       }
 
       setActiveColor(result);
-      setShowCustomInput(!colors.includes(result));
     }
 
     getActiveColorEffect();
   }, []);
 
+  const currentColor = { '--current-color': activeColor } as React.CSSProperties;
+
   return (
-    <div className="colorLinks">
-      <span
+    <div className="colorLinks currentColor" style={currentColor}>
+      <h1
         style={{
           color: activeColor,
-          paddingBottom: '5px',
-          transition: 'color .5s',
-        }}
+      }}
       >
-        A Quick Brown Fox Jumped
-      </span>
+        <img aria-hidden="true" src="../links48.png" alt="" />
+        <span>color links</span>
+      </h1>
       <div className="colorLinks--grid">
-        {colors.map((color) => (
+        {COLORS.map((color) => (
           <ColorButton
             color={color}
             clickHandler={() => onColorChange(color)}
@@ -54,20 +51,14 @@ const Popup = () => {
             active={color === activeColor}
           />
         ))}
-
-        <div>
-          <button
-            type="button"
-            aria-label="custom color"
-            className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
-            onClick={() => setShowCustomInput(true)}
-          >
-            #
-          </button>
-        </div>
       </div>
 
-      {showCustomInput && <CustomInput color={activeColor} saveHandler={onColorChange} />}
+      <details>
+        <summary>
+          custom color
+        </summary>
+        <CustomInput color={activeColor} saveHandler={onColorChange} />
+      </details>
       <WhitelistManager />
     </div>
   );

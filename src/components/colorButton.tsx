@@ -3,17 +3,17 @@ import React, { FC } from 'react';
 interface OwnProps {
   color: string;
   clickHandler: () => void;
-  active: boolean;
+  active?: boolean;
 }
 
 const ColorButton: FC<OwnProps> = ({ color, clickHandler, active }) => (
   <div>
     <button
-      aria-label="save color"
+      data-testid="color button"
       type="button"
       className={`colorLinks--button${active ? ' active' : ''}`}
       onClick={clickHandler}
-      style={{ color: 'white', background: color }}
+      style={{ background: color }}
     />
   </div>
 );

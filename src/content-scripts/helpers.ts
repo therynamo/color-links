@@ -1,24 +1,37 @@
+import { WhiteList } from '../helpers/whitelisting';
+
 interface ColorMessage {
   color: string;
 }
 
-export const displayStyles = function displayStyles(location: Window['location']) {
+export const displayStyles = function displayStyles(
+  location: Window['location']
+): Promise<WhiteList | undefined> {
   return new Promise((resolve) => {
     chrome.storage.sync.get('whitelist', (result) => {
-      const arr = result.whitelist && result.whitelist.length ? result.whitelist : [];
+      const arr: WhiteList[] = result.whitelist && result.whitelist.length ? result.whitelist : [];
       const { origin } = location;
-      const isWhitelisted = arr.filter((url: string) => url === origin);
+      const isWhitelisted = arr.find((list) => list.url === origin);
 
-      resolve(!!isWhitelisted.length);
+      resolve(isWhitelisted);
     });
   });
 };
 
-export const initializeStylesheet = function initializeStylesheet() {
+export const initializeStylesheet = function initializeStylesheet(whitelistedUrl: WhiteList) {
   const styleElement = document.createElement('style');
   styleElement.setAttribute('id', 'colorLinks');
 
   document.head.appendChild(styleElement);
+
+  if (whitelistedUrl.color) {
+    (styleElement.sheet as CSSStyleSheet).insertRule(
+      `a:visited {color: ${whitelistedUrl.color} !important;}`,
+      0
+    );
+    return;
+  }
+
   chrome.storage.sync.get('color', (results) => {
     if (results.color) {
       (styleElement.sheet as CSSStyleSheet).insertRule(
@@ -54,4 +67,6 @@ export const colorListener = function colorListener(request: ColorMessage) {
   if (color) {
     setStyleSheet(color);
   }
+
+  return true;
 };

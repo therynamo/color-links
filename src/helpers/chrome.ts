@@ -27,7 +27,9 @@ export const getCurrentUrl = () =>
 
 export const saveActiveColor = (color: string) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { color }, () => {});
+    chrome.tabs.sendMessage(tabs[0].id, { color }, (res) => {
+      console.log(res);
+    });
   });
 };
 

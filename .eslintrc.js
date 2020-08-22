@@ -13,6 +13,8 @@ module.exports = {
     'plugin:jest/recommended',
   ],
   rules: {
+    'object-curly-newline': 'off',
+    'import/prefer-default-export': 'off',
     'no-console': 'off',
     'comma-dangle': 'off',
     'implicit-arrow-linebreak': 'off',

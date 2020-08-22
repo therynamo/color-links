@@ -3,42 +3,42 @@ import React, { useCallback, useState, useEffect } from 'react';
 import WhitelistManager from './whitelist';
 import ColorButton from './colorButton';
 import CustomInput from './customInput';
-import { getActiveColor, saveActiveColor } from '../helpers/chrome';
+import { useActiveColor } from './useActiveColor';
+import { saveActiveColor, getCurrentUrl } from '../helpers/chrome';
+import { modifyWhiteList } from '../helpers/whitelisting';
 
 export const colors = ['#37d67a', '#2ccce4', '#06A77D', '#ff8a65', '#1E91D6'];
 
 const Popup = () => {
-  const [activeColor, setActiveColor] = useState('');
   const [showCustomInput, setShowCustomInput] = useState(false);
 
-  const onColorChange = useCallback((color) => {
-    saveActiveColor(color);
-    setActiveColor(color);
-    setShowCustomInput(false);
-  }, []);
+  const [currentColor, setCurrentColor] = useActiveColor();
 
   useEffect(() => {
-    async function getActiveColorEffect() {
-      let result = '';
+    setShowCustomInput(currentColor ? !colors.includes(currentColor) : false);
+  }, [currentColor]);
 
-      try {
-        result = await getActiveColor();
-      } catch (e) {
-        console.log('Did Not Receive Color');
+  const onColorChange = useCallback(
+    (color: string) => {
+      saveActiveColor(color);
+      setCurrentColor(color);
+      setShowCustomInput(false);
+
+      async function modify() {
+        const url = await getCurrentUrl();
+        await modifyWhiteList({ url, color });
       }
 
-      setActiveColor(result);
-      setShowCustomInput(!colors.includes(result));
-    }
-
-    getActiveColorEffect();
-  }, []);
+      modify();
+    },
+    [setCurrentColor]
+  );
 
   return (
     <div className="colorLinks">
       <span
         style={{
-          color: activeColor,
+          color: currentColor,
           paddingBottom: '5px',
           transition: 'color .5s',
         }}
@@ -51,7 +51,7 @@ const Popup = () => {
             color={color}
             clickHandler={() => onColorChange(color)}
             key={color}
-            active={color === activeColor}
+            active={color === currentColor}
           />
         ))}
 
@@ -59,7 +59,7 @@ const Popup = () => {
           <button
             type="button"
             aria-label="custom color"
-            className={`colorLinks--button${!colors.includes(activeColor) ? ' active' : ''}`}
+            className={`colorLinks--button${!colors.includes(currentColor) ? ' active' : ''}`}
             onClick={() => setShowCustomInput(true)}
           >
             #
@@ -67,7 +67,7 @@ const Popup = () => {
         </div>
       </div>
 
-      {showCustomInput && <CustomInput color={activeColor} saveHandler={onColorChange} />}
+      {showCustomInput && <CustomInput color={currentColor} saveHandler={onColorChange} />}
       <WhitelistManager />
     </div>
   );

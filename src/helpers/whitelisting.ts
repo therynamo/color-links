@@ -1,3 +1,8 @@
+export interface WhiteList {
+  url: string;
+  color: string;
+}
+
 /**
  * Whitelist Constructor to manage whitelist array
  * stored in chrome storage
@@ -10,7 +15,7 @@
  *
  * @return {Array} return array from chrome storage
  */
-export function getWhitelist(): Promise<string[]> {
+export function getWhitelist(): Promise<WhiteList[]> {
   return new Promise((resolve) => {
     chrome.storage.sync.get('whitelist', (result) => {
       const whitelist = result.whitelist && result.whitelist.length ? result.whitelist : [];
@@ -24,8 +29,23 @@ export function getWhitelist(): Promise<string[]> {
  *
  * @param {Array} whitelist array of urls to whitelist
  */
-export function setWhitelist(whitelist: string[]) {
+export function setWhitelist(whitelist: WhiteList[]) {
   return chrome.storage.sync.set({ whitelist });
+}
+
+/**
+ * Modify a given whitelist
+ * @param whiteList
+ */
+export async function modifyWhiteList({ url, color }: WhiteList) {
+  const existingWhiteList = await getWhitelist();
+  const listWithoutCurrentItem = existingWhiteList.filter((item) => item.url !== url);
+
+  const newWhitelist = [...listWithoutCurrentItem, { url, color }];
+
+  setWhitelist(newWhitelist);
+
+  return newWhitelist;
 }
 
 /**
@@ -33,9 +53,9 @@ export function setWhitelist(whitelist: string[]) {
  *
  * @param {String} url url to whitelist
  */
-export async function addUrlToWhitelist(url: string) {
-  const whitelist = await getWhitelist();
-  const newWhitelist = [...whitelist, url];
+export async function addUrlToWhitelist(whiteList: WhiteList) {
+  const existingWhiteList = await getWhitelist();
+  const newWhitelist = [...existingWhiteList, whiteList];
 
   setWhitelist(newWhitelist);
 
@@ -48,8 +68,8 @@ export async function addUrlToWhitelist(url: string) {
  * @param {String} url url to remove from whitelist
  */
 export async function removeUrlFromWhitelist(url: string) {
-  const whitelist = await getWhitelist();
-  const newWhitelist = whitelist.filter((u) => u !== url);
+  const existingWhiteList = await getWhitelist();
+  const newWhitelist = existingWhiteList.filter((list) => list.url !== url);
 
   setWhitelist(newWhitelist);
   return newWhitelist;

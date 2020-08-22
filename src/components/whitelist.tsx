@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { getWhitelist, removeUrlFromWhitelist, addUrlToWhitelist } from '../helpers/whitelisting';
 import { getCurrentUrl, reloadCurrentTab } from '../helpers/chrome';
+import { useActiveColor } from './useActiveColor';
 
 const WhitelistManager = () => {
   const [isActive, setIsActive] = useState(false);
   const [url, setUrl] = useState('');
+
+  const [currentColor] = useActiveColor();
 
   useEffect(() => {
     async function initializeWhitelist() {
@@ -19,7 +22,7 @@ const WhitelistManager = () => {
         console.log(e);
       }
 
-      setIsActive(urls.some((u) => u === currentUrl));
+      setIsActive(urls.some((u) => u.url === currentUrl));
     }
 
     initializeWhitelist();
@@ -46,7 +49,7 @@ const WhitelistManager = () => {
 
     async function addUrl() {
       try {
-        addUrlToWhitelist(url);
+        addUrlToWhitelist({ url, color: currentColor });
       } catch (e) {
         console.log(e);
       }
@@ -55,7 +58,7 @@ const WhitelistManager = () => {
     }
 
     addUrl();
-  }, [url]);
+  }, [url, currentColor]);
 
   return (
     <div className="whitelist--wrapper">

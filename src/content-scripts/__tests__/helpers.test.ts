@@ -29,7 +29,7 @@ describe('contentscript helpers', () => {
   });
 
   it('initializeStyleSheet should create a new stylesheet and save a new rule to storage', () => {
-    initializeStylesheet();
+    initializeStylesheet({ url: 'bowow', color: '' });
 
     const styles = document.getElementById('colorLinks');
     expect(styles.tagName).toEqual('STYLE');
@@ -43,22 +43,22 @@ describe('contentscript helpers', () => {
   it('initializeStyleSheet should not create a rule if there is no existing color', () => {
     const spyInsert = jest.fn();
     (styleElement.sheet as CSSStyleSheet).insertRule = spyInsert;
-    initializeStylesheet();
+    initializeStylesheet({ url: 'bowow', color: '' });
 
     expect(spyInsert).not.toHaveBeenCalled();
   });
 
   it('displayStyles should resolve true if url is whitelisted', async () => {
-    chrome.storage.local.set({ whitelist: ['https://www.google.com'] });
+    chrome.storage.local.set({ whitelist: [{ url: 'https://www.google.com', color: '' }] });
     await expect(
       displayStyles({ origin: 'https://www.google.com' } as Window['location'])
-    ).resolves.toEqual(true);
+    ).resolves.toEqual({ url: 'https://www.google.com', color: '' });
   });
 
   it('displayStyles should resolve false if url is not whitelisted', async () => {
     chrome.storage.local.set({ whitelist: ['https://www.google.com'] });
     await expect(
       displayStyles({ origin: 'https://www.github.com' } as Window['location'])
-    ).resolves.toEqual(false);
+    ).resolves.toEqual(undefined);
   });
 });

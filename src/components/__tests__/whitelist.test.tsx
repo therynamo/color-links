@@ -1,12 +1,6 @@
 /* eslint-disable import/named */
 import React from 'react';
-import {
-  render,
-  act,
-  RenderResult,
-  waitFor,
-  fireEvent,
-} from '@testing-library/react';
+import { render, act, RenderResult, waitFor, fireEvent } from '@testing-library/react';
 import * as chromeHelpers from '../../helpers/chrome';
 import {
   getWhitelist,
@@ -46,7 +40,7 @@ describe('WhitelistManager', () => {
     const url = 'https://www.google.com';
 
     (chromeHelpers.getCurrentUrl as jest.Mock).mockResolvedValueOnce(url);
-    (getWhitelist as jest.Mock).mockResolvedValueOnce([url]);
+    (getWhitelist as jest.Mock).mockResolvedValueOnce([{ url, color: 'red' }]);
 
     act(async () => {
       utils = render(<WhitelistManager />);
@@ -74,7 +68,7 @@ describe('WhitelistManager', () => {
     fireEvent.click(getByTestId('whitelist-checkbox'));
 
     await waitFor(() => expect(addUrlToWhitelist).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(addUrlToWhitelist).toHaveBeenCalledWith(url));
+    await waitFor(() => expect(addUrlToWhitelist).toHaveBeenCalledWith({ url, color: '' }));
   });
 
   it('should remove a url from the whitelist when clicked', async () => {
@@ -83,7 +77,7 @@ describe('WhitelistManager', () => {
 
     (chromeHelpers.getCurrentUrl as jest.Mock).mockResolvedValueOnce(url);
     (chromeHelpers.reloadCurrentTab as jest.Mock) = jest.fn();
-    (getWhitelist as jest.Mock).mockResolvedValueOnce([url]);
+    (getWhitelist as jest.Mock).mockResolvedValueOnce([{ url, color: 'blue' }]);
 
     act(async () => {
       utils = render(<WhitelistManager />);

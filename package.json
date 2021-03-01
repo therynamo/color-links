@@ -33,7 +33,7 @@
     "del": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "urijs": "^1.19.4"
+    "urijs": "^1.19.6"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.107",
